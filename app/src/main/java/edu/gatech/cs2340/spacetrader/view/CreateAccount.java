@@ -1,9 +1,11 @@
-package edu.gatech.cs2340.spacetrader;
+package edu.gatech.cs2340.spacetrader.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.view.MainActivity;
 
 public class CreateAccount extends AppCompatActivity {
 
