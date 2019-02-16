@@ -11,25 +11,25 @@ public class Player {
     private Ship ship;
 
     public Player() {
-        this.username = username;
-        this.pilot_point = 0;
+        this.username = "Default";
         this.engineer_point = 0;
         this.fighter_point = 0;
+        this.pilot_point = 0;
         this.trader_point = 0;
         this.skill_point = 16;
         this.credit = 1000;
         this.ship = new Ship();
     }
 
-    public Player(String username, int engineer_point, int fighter_point, int pilot_point, int trader_point, int skill_point, int credit, Ship ship){
+    public Player(String username, int engineer_point, int fighter_point, int pilot_point, int trader_point, int skill_point){
         this.username = username;
-        this.pilot_point = pilot_point;
         this.engineer_point = engineer_point;
         this.fighter_point = fighter_point;
+        this.pilot_point = pilot_point;
         this.trader_point = trader_point;
         this.skill_point = skill_point;
-        this.credit = credit;
-        this.ship = ship;
+        this.credit = 1000;
+        this.ship = new Ship();
     }
 
     public String getUsername() {
