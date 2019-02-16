@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.Player;
@@ -227,11 +229,26 @@ public class CreateAccount extends AppCompatActivity {
 
     private boolean validInput() {
         // TODO check for valid non-empty input
-        if (skillPoints == 0  && usernameEditText.getText().toString() != null) {
+        String name = usernameEditText.getText().toString().trim();
+        if (skillPoints == 0  && name != null) {
             return true;
-        } else {
+        } else if (name.length() < 1) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Please enter a valid username.",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return false;
+        } else if (skillPoints != 0) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Please allocate all skill points.",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            Log.d("validInput", "Skillpoints");
             return false;
         }
+        return false;
     }
 
 
