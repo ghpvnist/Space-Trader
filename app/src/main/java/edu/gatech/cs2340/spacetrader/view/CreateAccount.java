@@ -1,21 +1,25 @@
 package edu.gatech.cs2340.spacetrader.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.entity.DifficultyLevel;
 import edu.gatech.cs2340.spacetrader.model.Player;
-import edu.gatech.cs2340.spacetrader.view.MainActivity;
 import edu.gatech.cs2340.spacetrader.viewmodel.CreateAccountViewModel;
 
 public class CreateAccount extends AppCompatActivity {
@@ -50,6 +54,7 @@ public class CreateAccount extends AppCompatActivity {
         fighterPointsTextView = findViewById(R.id.fighter_counter);
         pilotPointsTextView = findViewById(R.id.pilot_counter);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
+        difficultySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, DifficultyLevel.values()));
         startButton = findViewById(R.id.start_button);
         usernameEditText = findViewById(R.id.player_name_edittext);
         skillPoints = 16;
@@ -70,8 +75,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setEngineer = Integer.parseInt(engineerPointsTextView.getText().toString());
                     setEngineer++;
                     engineerPointsTextView.setText(String.valueOf(setEngineer));
-                } else {
-                    // TODO throw toast not enough skill points
                 }
             }
         });
@@ -88,8 +91,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setFighter = Integer.parseInt(fighterPointsTextView.getText().toString());
                     setFighter++;
                     fighterPointsTextView.setText(String.valueOf(setFighter));
-                } else {
-                    // TODO throw toast not enough skill points
                 }
             }
         });
@@ -106,8 +107,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setPilot = Integer.parseInt(pilotPointsTextView.getText().toString());
                     setPilot++;
                     pilotPointsTextView.setText(String.valueOf(setPilot));
-                } else {
-                    // TODO throw toast not enough skill points
                 }
             }
         });
@@ -124,8 +123,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setTrader = Integer.parseInt(traderPointsTextView.getText().toString());
                     setTrader++;
                     traderPointsTextView.setText(String.valueOf(setTrader));
-                } else {
-                    // TODO throw toast not enough skill points
                 }
             }
         });
@@ -142,8 +139,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setEngineer = Integer.parseInt(engineerPointsTextView.getText().toString());
                     setEngineer--;
                     engineerPointsTextView.setText(String.valueOf(setEngineer));
-                } else {
-                    // TODO throw toast cannot subtract more points
                 }
             }
         });
@@ -160,8 +155,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setFighter = Integer.parseInt(fighterPointsTextView.getText().toString());
                     setFighter--;
                     fighterPointsTextView.setText(String.valueOf(setFighter));
-                } else {
-                    // TODO throw toast cannot subtract more points
                 }
             }
         });
@@ -178,8 +171,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setPilot = Integer.parseInt(pilotPointsTextView.getText().toString());
                     setPilot--;
                     pilotPointsTextView.setText(String.valueOf(setPilot));
-                } else {
-                    // TODO throw toast cannot subtract more points
                 }
             }
         });
@@ -196,8 +187,6 @@ public class CreateAccount extends AppCompatActivity {
                     int setTrader = Integer.parseInt(traderPointsTextView.getText().toString());
                     setTrader--;
                     traderPointsTextView.setText(String.valueOf(setTrader));
-                } else {
-                    // TODO throw toast cannot subtract more points
                 }
             }
         });
@@ -212,23 +201,18 @@ public class CreateAccount extends AppCompatActivity {
             int fighter = Integer.parseInt(fighterPointsTextView.getText().toString());
             int pilot = Integer.parseInt(pilotPointsTextView.getText().toString());
             int trader = Integer.parseInt(traderPointsTextView.getText().toString());
-            Log.d("TTTT", "Username: "+ username
-                    + "\nEngineer: " + engineer
-                    + "\nFighter: " + fighter
-                    + "\nPilot: " + pilot
-                    + "\nTrader: " + trader
-                    + "\nSkill Points: " + skillPoints);
-            viewModel.setPlayer(new Player(username, engineer, fighter, pilot, trader, skillPoints));
+            Player player = new Player(username, engineer, fighter, pilot, trader, skillPoints);
+            viewModel.setPlayer(player);
 
-        } else {
-            // TODO throw invalid input error
+            Gson gson = new Gson();
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PlayerData", gson.toJson(player));
+            startActivity(intent);
+            finish();
         }
-
-        //viewModel.getPlayer().set
     }
 
     private boolean validInput() {
-        // TODO check for valid non-empty input
         String name = usernameEditText.getText().toString().trim();
         if (skillPoints == 0  && name != null) {
             return true;
@@ -245,7 +229,6 @@ public class CreateAccount extends AppCompatActivity {
                     Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
-            Log.d("validInput", "Skillpoints");
             return false;
         }
         return false;
@@ -254,9 +237,28 @@ public class CreateAccount extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO make alert to confirm cancel create account
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        if (usernameEditText.getText().toString().length() > 0 || skillPoints != 16) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm Exit?");
+            builder.setMessage("Your progress will not be saved.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
+            builder.setNegativeButton("CANCEL", null);
+
+            builder.show();
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 }
