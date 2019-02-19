@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
         alertDialog.setTitle("Welcome " + player.getUsername() + "!");
         alertDialog.setMessage("Credits: " + player.getCredit()
+                + "\nShip: " + player.getShip().getShipType()
                 + "\nEngineer: " + player.getEngineer_point()
                 + "\nFighter: " + player.getFighter_point()
                 + "\nPilot: " + player.getPilot_point()

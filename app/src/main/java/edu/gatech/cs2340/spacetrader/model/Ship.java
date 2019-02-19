@@ -15,4 +15,11 @@ public class Ship {
         this.shipType = shipType.GNAT;
     }
 
+    public ShipType getShipType() {
+        return shipType;
+    }
+
+    public void setShipType(ShipType shipType) {
+        this.shipType = shipType;
+    }
 }
