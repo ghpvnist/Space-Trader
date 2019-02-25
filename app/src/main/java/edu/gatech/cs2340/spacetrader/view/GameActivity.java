@@ -10,13 +10,23 @@ import com.google.gson.Gson;
 
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.Universe;
+import edu.gatech.cs2340.spacetrader.viewmodel.GameActivityViewModel;
 
 public class GameActivity extends AppCompatActivity {
+
+    private GameActivityViewModel viewModel;
+    private Universe universe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        this.viewModel = new GameActivityViewModel();
+        this.universe = viewModel.getUniverse();
+
+        //Todo: Display the universe or log all properties to LogCat
 
         Gson gson = new Gson();
         String strObj = getIntent().getStringExtra("PlayerData");

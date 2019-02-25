@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.spacetrader.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum TechLevel {
     PRE_AGRICULTURE("Pre-Agriculture", 0),
     AGRICULTURE("Agriculture", 1),
@@ -18,11 +21,23 @@ public enum TechLevel {
         this.techRank = techRank;
     }
 
+    private static final Map<Integer, TechLevel> lookup = new HashMap<Integer, TechLevel>();
+
+    static {
+        for (TechLevel d : TechLevel.values()) {
+            lookup.put(d.getTechRank(), d);
+        }
+    }
+
     public String getTechLevel() {
         return techLevel;
     }
 
     public int getTechRank() {
         return techRank;
+    }
+
+    public static TechLevel get(int rank) {
+        return lookup.get(rank);
     }
 }
