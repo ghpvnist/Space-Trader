@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import edu.gatech.cs2340.spacetrader.R;
@@ -33,6 +34,11 @@ public class UniverseViewActivity extends AppCompatActivity {
 
         adapter = new UniverseAdapter();
         recyclerView.setAdapter(adapter);
+
+        Log.v("APP", "Universe:");
+        for (int i = 0; i < universe.getNumSolarSystems(); i++) {
+            Log.v("APP", "Solar System #" + (i+1) + ": " + universe.getSolarSystem(i).toString());
+        }
     }
 
     @Override

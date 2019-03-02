@@ -77,4 +77,12 @@ public class SolarSystem implements Serializable {
     public void setResources(Resource resources) {
         this.resources = resources;
     }
+
+    public String toString() {
+        return  "name = " + name + ", " +
+                "x = " + x + ", " +
+                "y = " + y + ", " +
+                "tech_level = " + techLevel.toString() + ", " +
+                "resources = " + resources.toString();
+    }
 }
