@@ -64,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void openUniverseView() {
         Intent intent = new Intent(this, UniverseViewActivity.class);
+        intent.putExtra("universe", universe);
         startActivity(intent);
     }
 

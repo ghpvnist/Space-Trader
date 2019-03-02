@@ -177,4 +177,12 @@ public class Universe implements Serializable {
 
     }
 
+    public int getNumSolarSystems() {
+        return solarSystems.length;
+    }
+
+    public SolarSystem getSolarSystem(int pos) {
+        return solarSystems[pos];
+    }
+
 }
