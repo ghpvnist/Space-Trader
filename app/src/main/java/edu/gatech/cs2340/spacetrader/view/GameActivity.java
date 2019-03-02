@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.gson.Gson;
 
@@ -17,6 +20,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameActivityViewModel viewModel;
     private Universe universe;
+    private Button viewUniverseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,20 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
+        Log.v("GAME","CREATED!");
+
+        viewUniverseButton = findViewById(R.id.viewUniverseButton);
+        viewUniverseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameActivity.this.openUniverseView();
+            }
+        });
+    }
+
+    public void openUniverseView() {
+        Intent intent = new Intent(this, UniverseViewActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-public class Planet {
+import java.io.Serializable;
+
+public class Planet implements Serializable {
 
     String name;
 

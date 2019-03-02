@@ -1,9 +1,10 @@
 package edu.gatech.cs2340.spacetrader.entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum TechLevel {
+public enum TechLevel implements Serializable {
     PRE_AGRICULTURE("Pre-Agriculture", 0),
     AGRICULTURE("Agriculture", 1),
     MEDIEVAL("Medieval", 2),

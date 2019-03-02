@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.MainGameActivity"
+            android:label="@string/title_activity_main_game"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".view.UniverseViewActivity"
+            android:label="@string/title_activity_universe_view"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.GameActivity" />
         <activity android:name=".view.CreateAccount" />
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.SplashActivity"
+        <activity
+            android:name=".view.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

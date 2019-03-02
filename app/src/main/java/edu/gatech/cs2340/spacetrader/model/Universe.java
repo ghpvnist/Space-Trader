@@ -1,9 +1,10 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Universe {
+public class Universe implements Serializable {
 
     private SolarSystem[] solarSystems;
 

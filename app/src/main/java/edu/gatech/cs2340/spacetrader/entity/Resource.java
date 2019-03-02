@@ -1,9 +1,10 @@
 package edu.gatech.cs2340.spacetrader.entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Resource {
+public enum Resource implements Serializable {
     NO_SPECIAL_RESOURCES("No Special Resources", 0),
     MINERAL_RICH("Mineral Rich", 1),
     MINERAL_POOR("Mineral Poor", 2),

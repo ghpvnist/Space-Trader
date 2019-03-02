@@ -4,10 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.GameActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.MainGameActivity"
+    tools:showIn="@layout/activity_main_game">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="404dp"
+        android:gravity="center"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView2"
         android:layout_width="244dp"
         android:layout_height="45dp"
         android:layout_marginTop="70dp"
@@ -18,16 +32,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/viewUniverseButton"
-        android:layout_width="188dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="404dp"
-        android:gravity="center"
-        android:text="View Universe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </android.support.constraint.ConstraintLayout>
