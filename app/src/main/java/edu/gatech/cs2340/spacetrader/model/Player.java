@@ -2,32 +2,33 @@ package edu.gatech.cs2340.spacetrader.model;
 
 public class Player {
     private String username;
-    private int engineer_point;
-    private int fighter_point;
-    private int pilot_point;
-    private int trader_point;
-    private int skill_point;
+    private int engineerPoint;
+    private int fighterPoint;
+    private int pilotPoint;
+    private int traderPoint;
+    private int skillPoint;
     private int credit;
     private Ship ship;
+    private Planet currentPlanet;
 
     public Player() {
         this.username = "Default";
-        this.engineer_point = 0;
-        this.fighter_point = 0;
-        this.pilot_point = 0;
-        this.trader_point = 0;
-        this.skill_point = 16;
+        this.engineerPoint = 0;
+        this.fighterPoint = 0;
+        this.pilotPoint = 0;
+        this.traderPoint = 0;
+        this.skillPoint = 16;
         this.credit = 1000;
         this.ship = new Ship();
     }
 
-    public Player(String username, int engineer_point, int fighter_point, int pilot_point, int trader_point, int skill_point){
+    public Player(String username, int engineerPoint, int fighterPoint, int pilotPoint, int traderPoint, int skillPoint){
         this.username = username;
-        this.engineer_point = engineer_point;
-        this.fighter_point = fighter_point;
-        this.pilot_point = pilot_point;
-        this.trader_point = trader_point;
-        this.skill_point = skill_point;
+        this.engineerPoint = engineerPoint;
+        this.fighterPoint = fighterPoint;
+        this.pilotPoint = pilotPoint;
+        this.traderPoint = traderPoint;
+        this.skillPoint = skillPoint;
         this.credit = 1000;
         this.ship = new Ship();
     }
@@ -40,44 +41,44 @@ public class Player {
         this.username = username;
     }
 
-    public int getEngineer_point() {
-        return engineer_point;
+    public int getEngineerPoint() {
+        return engineerPoint;
     }
 
-    public void setEngineer_point(int engineer_point) {
-        this.engineer_point = engineer_point;
+    public void setEngineerPoint(int engineerPoint) {
+        this.engineerPoint = engineerPoint;
     }
 
-    public int getFighter_point() {
-        return fighter_point;
+    public int getFighterPoint() {
+        return fighterPoint;
     }
 
-    public void setFighter_point(int fighter_point) {
-        this.fighter_point = fighter_point;
+    public void setFighterPoint(int fighterPoint) {
+        this.fighterPoint = fighterPoint;
     }
 
-    public int getPilot_point() {
-        return pilot_point;
+    public int getPilotPoint() {
+        return pilotPoint;
     }
 
-    public void setPilot_point(int pilot_point) {
-        this.pilot_point = pilot_point;
+    public void setPilotPoint(int pilotPoint) {
+        this.pilotPoint = pilotPoint;
     }
 
-    public int getTrader_point() {
-        return trader_point;
+    public int getTraderPoint() {
+        return traderPoint;
     }
 
-    public void setTrader_point(int trader_point) {
-        this.trader_point = trader_point;
+    public void setTraderPoint(int traderPoint) {
+        this.traderPoint = traderPoint;
     }
 
-    public int getSkill_point() {
-        return skill_point;
+    public int getSkillPoint() {
+        return skillPoint;
     }
 
-    public void setSkill_point(int skill_point) {
-        this.skill_point = skill_point;
+    public void setSkillPoint(int skillPoint) {
+        this.skillPoint = skillPoint;
     }
 
     public int getCredit() {
@@ -94,5 +95,13 @@ public class Player {
 
     public void setShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
+    }
+
+    public void setCurrentPlanet(Planet currentPlanet) {
+        this.currentPlanet = currentPlanet;
     }
 }
