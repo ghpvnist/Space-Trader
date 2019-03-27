@@ -34,9 +34,7 @@ public class GameActivity extends AppCompatActivity {
         this.viewModel = new GameActivityViewModel();
         this.universe = viewModel.getUniverse();
 
-        Gson gson = new Gson();
-        String strObj = getIntent().getStringExtra("PlayerData");
-        Player player = gson.fromJson(strObj, Player.class);
+        Player player = Player.getInstance();
 
         player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
 

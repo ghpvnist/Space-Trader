@@ -2,30 +2,86 @@ package edu.gatech.cs2340.spacetrader.viewmodel;
 
 import edu.gatech.cs2340.spacetrader.model.DifficultyLevel;
 import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.Ship;
 
 public class CreateAccountViewModel {
 
     private DifficultyLevel difficulty;
-    private Player player;
+    private int remainingSkillPoints;
+    private int engineerSkillPoints;
+    private int fighterSkillPoints;
+    private int pilotSkillPoints;
+    private int traderSkillPoints;
 
     public CreateAccountViewModel() {
         this.difficulty = DifficultyLevel.NORMAL;
-        this.player = Player.instantiatePlayer();
+        this.remainingSkillPoints = 16;
+        this.engineerSkillPoints = 0;
+        this.fighterSkillPoints = 0;
+        this.pilotSkillPoints = 0;
+        this.traderSkillPoints = 0;
     }
 
-    public DifficultyLevel getDifficulty() {
-        return difficulty;
+    public int getRemainingSkillPoints() { return remainingSkillPoints; }
+    public int getEngineerSkillPoints() { return engineerSkillPoints; }
+    public int getFighterSkillPoints() { return fighterSkillPoints; }
+    public int getPilotSkillPoints() { return pilotSkillPoints; }
+    public int getTraderSkillPoints() { return traderSkillPoints; }
+
+    /**
+     * Changes engineer skill points by {points}, if possible.
+     * Otherwise, doesn't change the values at all.
+     */
+    public void changeEngineerSkillPoints(int points) {
+        if ((points > 0 && remainingSkillPoints - points >= 0) ||
+                (points < 0 && engineerSkillPoints + points >= 0)) {
+            remainingSkillPoints -= points;
+            engineerSkillPoints += points;
+        }
     }
 
-    public void setDifficulty(DifficultyLevel difficulty) {
-        this.difficulty = difficulty;
+    /**
+     * Changes fighter skill points by {points}, if possible.
+     * Otherwise, doesn't change the values at all.
+     */
+    public void changeFighterSkillPoints(int points) {
+        if ((points > 0 && remainingSkillPoints - points >= 0) ||
+                (points < 0 && fighterSkillPoints + points >= 0)) {
+            remainingSkillPoints -= points;
+            fighterSkillPoints += points;
+        }
     }
 
-    public Player getPlayer() {
-        return player;
+    /**
+     * Changes pilot skill points by {points}, if possible.
+     * Otherwise, doesn't change the values at all.
+     */
+    public void changePilotSkillPoints(int points) {
+        if ((points > 0 && remainingSkillPoints - points >= 0) ||
+                (points < 0 && pilotSkillPoints + points >= 0)) {
+            remainingSkillPoints -= points;
+            pilotSkillPoints += points;
+        }
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    /**
+     * Changes trader skill points by {points}, if possible.
+     * Otherwise, doesn't change the values at all.
+     */
+    public void changeTraderSkillPoints(int points) {
+        if ((points > 0 && remainingSkillPoints - points >= 0) ||
+                (points < 0 && traderSkillPoints + points >= 0)) {
+            remainingSkillPoints -= points;
+            traderSkillPoints += points;
+        }
+    }
+
+    public boolean allSkillPointsAllocated() {
+        return remainingSkillPoints == 0;
+    }
+
+    public void initializePlayer(String playerName, DifficultyLevel difficulty) {
+        Player.instantiatePlayer(playerName, engineerSkillPoints, fighterSkillPoints,
+                pilotSkillPoints, traderSkillPoints, 0, 1000, new Ship());
     }
 }
