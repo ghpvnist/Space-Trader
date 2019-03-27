@@ -41,13 +41,13 @@ public class GameActivity extends AppCompatActivity {
         player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
 
         AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
-        alertDialog.setTitle("Welcome " + player.getUsername() + "!");
-        alertDialog.setMessage("Credits: " + player.getCredit()
+        alertDialog.setTitle("Welcome " + player.getPlayerName() + "!");
+        alertDialog.setMessage("Credits: " + player.getCredits()
                 + "\nShip: " + player.getShip().getShipType()
-                + "\nEngineer: " + player.getEngineerPoint()
-                + "\nFighter: " + player.getFighterPoint()
-                + "\nPilot: " + player.getPilotPoint()
-                + "\nTrader: " + player.getTraderPoint());
+                + "\nEngineer: " + player.getEngineerSkillPoints()
+                + "\nFighter: " + player.getFighterSkillPoints()
+                + "\nPilot: " + player.getPilotSkillPoints()
+                + "\nTrader: " + player.getTraderSkillPoints());
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

@@ -1,92 +1,131 @@
 package edu.gatech.cs2340.spacetrader.model;
 
 public class Player {
-    private String username;
-    private int engineerPoint;
-    private int fighterPoint;
-    private int pilotPoint;
-    private int traderPoint;
-    private int skillPoint;
-    private int credit;
+    private String playerName;
+    private int engineerSkillPoints;
+    private int fighterSkillPoints;
+    private int pilotSkillPoints;
+    private int traderSkillPoints;
+    private int remainingSkillPoints;
+    private int credits;
     private Ship ship;
     private Planet currentPlanet;
 
-    public Player() {
-        this.username = "Default";
-        this.engineerPoint = 0;
-        this.fighterPoint = 0;
-        this.pilotPoint = 0;
-        this.traderPoint = 0;
-        this.skillPoint = 16;
-        this.credit = 1000;
-        this.ship = new Ship();
+    private static Player INSTANCE = null;
+
+    private Player(String playerName, int engineerSkillPoints, int fighterSkillPoints,
+                   int pilotSkillPoints, int traderSkillPoints, int freeSkillPoints,
+                   int credits, Ship ship){
+        this.playerName = playerName;
+        this.engineerSkillPoints = engineerSkillPoints;
+        this.fighterSkillPoints = fighterSkillPoints;
+        this.pilotSkillPoints = pilotSkillPoints;
+        this.traderSkillPoints = traderSkillPoints;
+        this.remainingSkillPoints = freeSkillPoints;
+        this.credits = credits;
+        this.ship = ship;
     }
 
-    public Player(String username, int engineerPoint, int fighterPoint, int pilotPoint, int traderPoint, int skillPoint){
-        this.username = username;
-        this.engineerPoint = engineerPoint;
-        this.fighterPoint = fighterPoint;
-        this.pilotPoint = pilotPoint;
-        this.traderPoint = traderPoint;
-        this.skillPoint = skillPoint;
-        this.credit = 1000;
-        this.ship = new Ship();
+    public static Player getInstance() {
+        if (INSTANCE == null) throw new RuntimeException("Player not yet instantiated!");
+        return INSTANCE;
     }
 
-    public String getUsername() {
-        return username;
+    public static Player instantiatePlayer(String playerName, int engineerSkillPoints,
+                                           int fighterSkillPoints, int pilotSkillPoints,
+                                           int traderSkillPoints, int freeSkillPoints,
+                                           int credits, Ship ship) {
+        if (INSTANCE != null) throw new RuntimeException("Player already instantiated!");
+        INSTANCE = new Player(playerName, engineerSkillPoints, fighterSkillPoints,
+                pilotSkillPoints, traderSkillPoints, freeSkillPoints, credits, ship);
+        return INSTANCE;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static Player instantiatePlayer() {
+        return instantiatePlayer("Han", 0, 0, 0, 0, 16, 1000, new Ship());
     }
 
-    public int getEngineerPoint() {
-        return engineerPoint;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setEngineerPoint(int engineerPoint) {
-        this.engineerPoint = engineerPoint;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public int getFighterPoint() {
-        return fighterPoint;
+    public int getEngineerSkillPoints() {
+        return engineerSkillPoints;
     }
 
-    public void setFighterPoint(int fighterPoint) {
-        this.fighterPoint = fighterPoint;
+    public int getFighterSkillPoints() {
+        return fighterSkillPoints;
     }
 
-    public int getPilotPoint() {
-        return pilotPoint;
+    public int getPilotSkillPoints() {
+        return pilotSkillPoints;
     }
 
-    public void setPilotPoint(int pilotPoint) {
-        this.pilotPoint = pilotPoint;
+    public int getTraderSkillPoints() {
+        return traderSkillPoints;
     }
 
-    public int getTraderPoint() {
-        return traderPoint;
+    public void addEngineerSkillPoint() {
+        if (this.remainingSkillPoints == 0) {
+            throw new RuntimeException("No remaining skill points!");
+        }
+        engineerSkillPoints++;
+        remainingSkillPoints--;
     }
 
-    public void setTraderPoint(int traderPoint) {
-        this.traderPoint = traderPoint;
+    public void addFighterSkillPoint() {
+        if (this.remainingSkillPoints == 0) {
+            throw new RuntimeException("No remaining skill points!");
+        }
+        fighterSkillPoints++;
+        remainingSkillPoints--;
     }
 
-    public int getSkillPoint() {
-        return skillPoint;
+    public void addPilotSkillPoint() {
+        if (this.remainingSkillPoints == 0) {
+            throw new RuntimeException("No remaining skill points!");
+        }
+        pilotSkillPoints++;
+        remainingSkillPoints--;
     }
 
-    public void setSkillPoint(int skillPoint) {
-        this.skillPoint = skillPoint;
+    public void addTraderSkillPoint() {
+        if (this.remainingSkillPoints == 0) {
+            throw new RuntimeException("No remaining skill points!");
+        }
+        traderSkillPoints++;
+        remainingSkillPoints--;
     }
 
-    public int getCredit() {
-        return credit;
+    public void resetSkillPoints() {
+        remainingSkillPoints += engineerSkillPoints;
+        remainingSkillPoints += fighterSkillPoints;
+        remainingSkillPoints += pilotSkillPoints;
+        remainingSkillPoints += traderSkillPoints;
+        engineerSkillPoints = 0;
+        fighterSkillPoints = 0;
+        pilotSkillPoints = 0;
+        traderSkillPoints = 0;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public int getRemainingSkillPoints() {
+        return remainingSkillPoints;
+    }
+
+    public void addSkillPoints(int additionalPoints) {
+        remainingSkillPoints += additionalPoints;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 
     public Ship getShip() {

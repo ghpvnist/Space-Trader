@@ -10,7 +10,7 @@ public class CreateAccountViewModel {
 
     public CreateAccountViewModel() {
         this.difficulty = DifficultyLevel.NORMAL;
-        this.player = new Player();
+        this.player = Player.instantiatePlayer();
     }
 
     public DifficultyLevel getDifficulty() {
