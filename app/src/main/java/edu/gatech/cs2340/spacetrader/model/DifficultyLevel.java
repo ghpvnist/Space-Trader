@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.spacetrader.entity;
+package edu.gatech.cs2340.spacetrader.model;
 
 public enum DifficultyLevel {
     BEGINNER("BEGINNER"),

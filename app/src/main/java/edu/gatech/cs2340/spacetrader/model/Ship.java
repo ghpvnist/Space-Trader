@@ -1,11 +1,7 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import android.app.ActivityManager;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import edu.gatech.cs2340.spacetrader.entity.ShipType;
 
 public class Ship {
     private ShipType shipType;

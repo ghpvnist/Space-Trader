@@ -1,6 +1,6 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
-import edu.gatech.cs2340.spacetrader.entity.DifficultyLevel;
+import edu.gatech.cs2340.spacetrader.model.DifficultyLevel;
 import edu.gatech.cs2340.spacetrader.model.Player;
 
 public class CreateAccountViewModel {

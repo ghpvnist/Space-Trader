@@ -1,11 +1,6 @@
 package edu.gatech.cs2340.spacetrader.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Random;
-
-import edu.gatech.cs2340.spacetrader.entity.Resource;
-import edu.gatech.cs2340.spacetrader.entity.TechLevel;
 
 public class Planet implements Serializable {
 

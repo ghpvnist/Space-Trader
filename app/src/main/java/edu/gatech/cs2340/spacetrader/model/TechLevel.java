@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.spacetrader.entity;
+package edu.gatech.cs2340.spacetrader.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
