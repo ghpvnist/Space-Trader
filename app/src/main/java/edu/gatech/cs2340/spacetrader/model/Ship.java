@@ -19,7 +19,7 @@ public class Ship {
         this.cargo = new HashMap<String, Integer>();
         this.currentCargo = 0;
 
-        this.addCargo("Log", 85);
+        this.addCargo("Wood Log", 15);
         this.addCargo("Patrick", 1);
         this.addCargo("Apple", 8);
         this.addCargo("Machine Parts", 3);
@@ -61,6 +61,17 @@ public class Ship {
 
     public int getCurrentCargo() {
         return currentCargo;
+    }
+
+    public int getAvailableCargoSpace() {
+        return shipType.getCargoSize() - getCurrentCargo();
+    }
+
+    public int getCargo(String itemName) {
+        if (cargo.containsKey(itemName)) {
+            return cargo.get(itemName);
+        }
+        return 0;
     }
 
     public void addCargo(String itemName, int quantity){

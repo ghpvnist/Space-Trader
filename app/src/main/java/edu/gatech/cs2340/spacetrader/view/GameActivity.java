@@ -82,6 +82,11 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onStoreButtonPressed(View v) {
+        Intent intent = new Intent(this, StoreViewActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

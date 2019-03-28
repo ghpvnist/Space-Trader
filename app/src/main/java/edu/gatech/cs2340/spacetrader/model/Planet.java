@@ -39,7 +39,17 @@ public class Planet implements Serializable {
         TradeOffer[] tradeOffers = (TradeOffer[]) offers.toArray();
 
         this.store = new Store(name + " Store", tradeOffers);*/
+
+        TradeOffer[] tradeOffers = new TradeOffer[4];
+        tradeOffers[0] = new TradeOffer("Wood Log", 50, 8);
+        tradeOffers[2] = new TradeOffer("Patrick", 550, 0);
+        tradeOffers[1] = new TradeOffer("Machine Parts", 170, 25);
+        tradeOffers[3] = new TradeOffer("Banana", 7, 50);
+
+        this.store = new Store("Bandhi's Trinket Shack", tradeOffers);
     }
+
+    public Store getStore() { return store; }
 
     public String getName() {
         return name;

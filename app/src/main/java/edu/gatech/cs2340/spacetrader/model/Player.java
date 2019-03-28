@@ -143,4 +143,8 @@ public class Player {
     public void setCurrentPlanet(Planet currentPlanet) {
         this.currentPlanet = currentPlanet;
     }
+
+    public void addCredits(int credits) {
+        setCredits(getCredits() + credits);
+    }
 }
