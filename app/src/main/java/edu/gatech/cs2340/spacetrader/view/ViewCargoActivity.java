@@ -34,6 +34,7 @@ public class ViewCargoActivity extends AppCompatActivity {
         cargoListView.setAdapter(new CargoItemAdapter());
         cargoListView.setLayoutManager(new LinearLayoutManager(this));
         cargoListView.setHasFixedSize(true);
+        cargoListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     @Override
