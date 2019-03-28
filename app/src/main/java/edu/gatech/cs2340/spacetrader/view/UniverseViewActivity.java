@@ -29,7 +29,7 @@ public class UniverseViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         universe = (Universe) extras.getSerializable("universe");
-        player = (Player) extras.getSerializable("player");
+        player = Player.getInstance();
 
         RecyclerView recyclerView = findViewById(R.id.systemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

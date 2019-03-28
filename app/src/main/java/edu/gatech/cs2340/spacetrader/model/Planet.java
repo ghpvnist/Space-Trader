@@ -8,14 +8,18 @@ public class Planet implements Serializable {
     private TechLevel planetTechLevel;
     private Resource planetResource;
     private Store store;
+    private int x;
+    private int y;
     //private Shipyard shipyard;
 
     public Planet() {
         this.name = "";
     }
 
-    public Planet(String name, Resource resource, TechLevel techLevel) {
+    public Planet(String name, int x, int y, Resource resource, TechLevel techLevel) {
         this.name = name;
+        this.x = x;
+        this.y = y;
         this.planetResource = resource;
         this.planetTechLevel = techLevel;
 
@@ -57,6 +61,14 @@ public class Planet implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public TechLevel getPlanetTechLevel() {

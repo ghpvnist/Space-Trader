@@ -19,7 +19,7 @@ public class SolarSystem implements Serializable {
         this.resources = Resource.get(resourceRank);
 
         this.planets = new Planet[1];
-        this.planets[0] = new Planet(name, this.resources, this.techLevel);
+        this.planets[0] = new Planet(name, x, y, this.resources, this.techLevel);
 
         this.name = name + " System";
 

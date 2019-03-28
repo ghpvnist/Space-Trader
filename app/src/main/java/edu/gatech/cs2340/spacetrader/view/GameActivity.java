@@ -37,7 +37,9 @@ public class GameActivity extends AppCompatActivity {
 
         this.player = Player.getInstance();
 
-        this.player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
+        if(this.player.getCurrentPlanet() == null) {
+            this.player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
+        }
 
         AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
         alertDialog.setTitle("Welcome " + this.player.getPlayerName() + "!");
@@ -72,13 +74,19 @@ public class GameActivity extends AppCompatActivity {
         currentPlanetText.setText("You are at the " + this.player.getCurrentPlanet().getName() + " System");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("Here", "Resume " + this.player.getCurrentPlanet().getName());
+        currentPlanetText.setText("You are at the " + this.player.getCurrentPlanet().getName() + " System");
+    }
+
     public void openUniverseView() {
         Intent intent = new Intent(this, UniverseViewActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("universe", universe);
-        extras.putSerializable("player", player);
         intent.putExtras(extras);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void onCargoButtonPressed(View v) {

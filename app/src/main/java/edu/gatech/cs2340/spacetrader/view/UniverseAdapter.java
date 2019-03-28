@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.spacetrader.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,8 +34,13 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
     public void onBindViewHolder(@NonNull UniverseViewHolder holder, int pos) {
         SolarSystem system = universe.getSolarSystem(pos);
 
-        holder.planetImage.setImageResource(getPlanetIcon(system));
+        int planetIcon = getPlanetIcon(system);
+        holder.planetImage.setImageResource(planetIcon);
+        holder.planetImage.setTag(planetIcon);
+
         holder.systemName.setText(system.getName());
+        holder.systemName.setTag(system);
+
         holder.systemLocation.setText("(" + system.getX() + ", " + system.getY() + ")");
         holder.solarSystemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +77,10 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
 
     public void openTravelView(View v) {
         Intent intent = new Intent(v.getContext(), TravelViewActivity.class);
-        intent.putExtra("player", player);
+        Bundle extras = new Bundle();
+        extras.putSerializable("system", (SolarSystem) v.findViewById(R.id.systemName).getTag());
+        extras.putInt("planetImage", (int) v.findViewById(R.id.planetImage).getTag());
+        intent.putExtras(extras);
         v.getContext().startActivity(intent);
     }
 
