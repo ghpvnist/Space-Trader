@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.StoreViewActivity"></activity>
+        <activity android:name=".view.ViewCargoActivity" />
         <activity
             android:name=".view.MainGameActivity"
             android:label="@string/title_activity_main_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.UniverseViewActivity"
             android:label="@string/title_activity_universe_view"

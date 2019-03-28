@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,13 +13,18 @@ public class Ship {
     private int currentCargo;
 
     public Ship() {
-
         this.shipType = shipType.GNAT;
         this.currentFuel = shipType.GNAT.getMaxFuel();
         this.currentHealth = shipType.GNAT.getMaxHealth();
         this.cargo = new HashMap<String, Integer>();
         this.currentCargo = 0;
 
+        this.addCargo("Log", 85);
+        this.addCargo("Patrick", 1);
+        this.addCargo("Apple", 8);
+        this.addCargo("Machine Parts", 3);
+        Log.d("SHIP", "Ship constructor called!");
+        Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
     }
 
     public ShipType getShipType() {
@@ -62,12 +69,12 @@ public class Ship {
             throw new RuntimeException("Not enough room for adding cargo");
         }
 
+        currentCargo += quantity;
         if(this.cargo.containsKey(itemName)){
             this.cargo.put(itemName, this.cargo.get(itemName) + quantity);
         } else {
             this.cargo.put(itemName, quantity);
         }
-
     }
 
     public void removeCargo(String itemName, int quantity){
@@ -79,6 +86,8 @@ public class Ship {
             if (quantity > curQuantity) {
                 throw new RuntimeException("Not enough cargo of this type to remove!");
             }
+
+            currentCargo -= quantity;
             if (quantity == curQuantity) {
                 this.cargo.remove(itemName);
             } else {

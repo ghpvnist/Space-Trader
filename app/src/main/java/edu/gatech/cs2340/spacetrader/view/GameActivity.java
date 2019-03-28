@@ -77,6 +77,11 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onCargoButtonPressed(View v) {
+        Intent intent = new Intent(this, ViewCargoActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
