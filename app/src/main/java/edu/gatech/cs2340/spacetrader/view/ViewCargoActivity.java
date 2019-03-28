@@ -27,22 +27,8 @@ public class ViewCargoActivity extends AppCompatActivity {
 
         TextView cargoSpaceIndicator = findViewById(R.id.cargo_space_indicator);
 
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        SpannableString availSpace = new SpannableString(String.valueOf(viewModel.getAvailableCargoSpace()));
-        if (((double)viewModel.getAvailableCargoSpace())/viewModel.getMaxCargoSpace() < 0.1) {
-            availSpace.setSpan(new ForegroundColorSpan(Color.RED), 0, availSpace.length(), 0);
-        } else if (((double)viewModel.getAvailableCargoSpace())/viewModel.getMaxCargoSpace() < 0.33) {
-            availSpace.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, availSpace.length(), 0);
-        }
-        builder.append(availSpace);
-
-        SpannableString sep = new SpannableString(" / ");
-        builder.append(sep);
-
-        SpannableString maxSpace = new SpannableString(String.valueOf(viewModel.getMaxCargoSpace()));
-        builder.append(maxSpace);
-
-        cargoSpaceIndicator.setText(builder, TextView.BufferType.SPANNABLE);
+        SpannableStringBuilder ssb = ViewFormatUtil.formatCargoCapacity(viewModel.getAvailableCargoSpace(), viewModel.getMaxCargoSpace(), true);
+        cargoSpaceIndicator.setText(ssb, TextView.BufferType.SPANNABLE);
 
         RecyclerView cargoListView = findViewById(R.id.cargo_list_recycler_view);
         cargoListView.setAdapter(new CargoItemAdapter());
