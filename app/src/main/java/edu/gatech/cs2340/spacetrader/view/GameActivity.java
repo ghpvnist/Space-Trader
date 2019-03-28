@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private Button shopButton;
     private Button shipButton;
     private TextView currentPlanetText;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +35,18 @@ public class GameActivity extends AppCompatActivity {
         this.viewModel = new GameActivityViewModel();
         this.universe = viewModel.getUniverse();
 
-        Player player = Player.getInstance();
+        this.player = Player.getInstance();
 
-        player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
+        this.player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
 
         AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
-        alertDialog.setTitle("Welcome " + player.getPlayerName() + "!");
-        alertDialog.setMessage("Credits: " + player.getCredits()
-                + "\nShip: " + player.getShip().getShipType()
-                + "\nEngineer: " + player.getEngineerSkillPoints()
-                + "\nFighter: " + player.getFighterSkillPoints()
-                + "\nPilot: " + player.getPilotSkillPoints()
-                + "\nTrader: " + player.getTraderSkillPoints());
+        alertDialog.setTitle("Welcome " + this.player.getPlayerName() + "!");
+        alertDialog.setMessage("Credits: " + this.player.getCredits()
+                + "\nShip: " + this.player.getShip().getShipType()
+                + "\nEngineer: " + this.player.getEngineerSkillPoints()
+                + "\nFighter: " + this.player.getFighterSkillPoints()
+                + "\nPilot: " + this.player.getPilotSkillPoints()
+                + "\nTrader: " + this.player.getTraderSkillPoints());
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -68,12 +69,15 @@ public class GameActivity extends AppCompatActivity {
         shipButton = findViewById(R.id.shipButton);
 
         currentPlanetText = findViewById(R.id.currentPlanetText);
-        currentPlanetText.setText("You are at the " + player.getCurrentPlanet().getName() + " System");
+        currentPlanetText.setText("You are at the " + this.player.getCurrentPlanet().getName() + " System");
     }
 
     public void openUniverseView() {
         Intent intent = new Intent(this, UniverseViewActivity.class);
-        intent.putExtra("universe", universe);
+        Bundle extras = new Bundle();
+        extras.putSerializable("universe", universe);
+        extras.putSerializable("player", player);
+        intent.putExtras(extras);
         startActivity(intent);
     }
 

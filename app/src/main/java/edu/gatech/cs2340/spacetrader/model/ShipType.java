@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-public enum ShipType {
+import java.io.Serializable;
+
+public enum ShipType implements Serializable {
     FLEA(100, 100, 100, 100, 100, 100),
     GNAT(100, 100, 100, 100, 100, 100),
     FIREFLY(100, 100, 100, 100, 100, 100),

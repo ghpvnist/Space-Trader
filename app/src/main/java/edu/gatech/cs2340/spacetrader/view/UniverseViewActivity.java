@@ -12,11 +12,13 @@ import android.util.Log;
 import android.view.View;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class UniverseViewActivity extends AppCompatActivity {
 
     private Universe universe;
+    private Player player;
     private UniverseAdapter adapter;
 
     @Override
@@ -25,7 +27,9 @@ public class UniverseViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_universe_view);
 
         Intent intent = getIntent();
-        universe = (Universe) intent.getSerializableExtra("universe");
+        Bundle extras = intent.getExtras();
+        universe = (Universe) extras.getSerializable("universe");
+        player = (Player) extras.getSerializable("player");
 
         RecyclerView recyclerView = findViewById(R.id.systemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,5 +50,6 @@ public class UniverseViewActivity extends AppCompatActivity {
         super.onResume();
 
         adapter.setUniverse(universe);
+        adapter.setPlayer(player);
     }
 }

@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String playerName;
     private int engineerSkillPoints;
     private int fighterSkillPoints;

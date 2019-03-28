@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-public class TradeOffer {
+import java.io.Serializable;
+
+public class TradeOffer implements Serializable {
 
     private String itemName;
     private int itemPrice;

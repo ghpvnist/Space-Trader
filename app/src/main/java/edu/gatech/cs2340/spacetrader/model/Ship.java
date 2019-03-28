@@ -2,10 +2,11 @@ package edu.gatech.cs2340.spacetrader.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Ship {
+public class Ship implements Serializable {
     private ShipType shipType;
     private Map<String, Integer> cargo;
     private int currentFuel;

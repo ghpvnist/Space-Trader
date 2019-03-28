@@ -1,20 +1,24 @@
 package edu.gatech.cs2340.spacetrader.view;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.UniverseViewHolder> {
 
     private Universe universe;
+    private Player player;
 
     @NonNull
     @Override
@@ -32,6 +36,12 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         holder.planetImage.setImageResource(getPlanetIcon(system));
         holder.systemName.setText(system.getName());
         holder.systemLocation.setText("(" + system.getX() + ", " + system.getY() + ")");
+        holder.solarSystemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UniverseAdapter.this.openTravelView(v);
+            }
+        });
     }
 
     @Override
@@ -43,6 +53,8 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
+
+    public void setPlayer(Player player) { this.player = player; }
 
     private int getPlanetIcon(SolarSystem system) {
         int idx = (10000 + system.getX() + system.getY()) % 6;
@@ -57,10 +69,17 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         }
     }
 
+    public void openTravelView(View v) {
+        Intent intent = new Intent(v.getContext(), TravelViewActivity.class);
+        intent.putExtra("player", player);
+        v.getContext().startActivity(intent);
+    }
+
     class UniverseViewHolder extends RecyclerView.ViewHolder {
         private ImageView planetImage;
         private TextView systemName;
         private TextView systemLocation;
+        private RelativeLayout solarSystemLayout;
 
         public UniverseViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +87,8 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
             this.planetImage = itemView.findViewById(R.id.planetImage);
             this.systemName = itemView.findViewById(R.id.systemName);
             this.systemLocation = itemView.findViewById(R.id.systemLocation);
+            this.solarSystemLayout = itemView.findViewById(R.id.solarSystemLayout);
+
         }
     }
 }

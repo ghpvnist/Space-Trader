@@ -1,8 +1,9 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Store {
+public class Store implements Serializable {
 
     private String storeName;
     private TradeOffer[] tradeOffers;
