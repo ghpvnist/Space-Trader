@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
 
         this.player = Player.getInstance();
 
-        if(this.player.getCurrentPlanet() == null) {
+        if (this.player.getCurrentPlanet() == null) {
             this.player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
         }
 
@@ -56,7 +56,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
-        Log.v("GAME","CREATED!");
+        Log.v("GAME", "CREATED!");
 
         viewUniverseButton = findViewById(R.id.viewUniverseButton);
         viewUniverseButton.setOnClickListener(new View.OnClickListener() {

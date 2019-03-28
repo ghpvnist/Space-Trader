@@ -53,7 +53,9 @@ public class Planet implements Serializable {
         this.store = new Store("Bandhi's Trinket Shack", tradeOffers);
     }
 
-    public Store getStore() { return store; }
+    public Store getStore() {
+        return store;
+    }
 
     public String getName() {
         return name;
@@ -79,11 +81,11 @@ public class Planet implements Serializable {
         return planetResource;
     }
 
-    public boolean hasStore(){
+    public boolean hasStore() {
         return true;
     }
 
-    public boolean hasShipyard(){
+    public boolean hasShipyard() {
         return true;
     }
 

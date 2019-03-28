@@ -22,11 +22,25 @@ public class CreateAccountViewModel {
         this.traderSkillPoints = 0;
     }
 
-    public int getRemainingSkillPoints() { return remainingSkillPoints; }
-    public int getEngineerSkillPoints() { return engineerSkillPoints; }
-    public int getFighterSkillPoints() { return fighterSkillPoints; }
-    public int getPilotSkillPoints() { return pilotSkillPoints; }
-    public int getTraderSkillPoints() { return traderSkillPoints; }
+    public int getRemainingSkillPoints() {
+        return remainingSkillPoints;
+    }
+
+    public int getEngineerSkillPoints() {
+        return engineerSkillPoints;
+    }
+
+    public int getFighterSkillPoints() {
+        return fighterSkillPoints;
+    }
+
+    public int getPilotSkillPoints() {
+        return pilotSkillPoints;
+    }
+
+    public int getTraderSkillPoints() {
+        return traderSkillPoints;
+    }
 
     /**
      * Changes engineer skill points by {points}, if possible.

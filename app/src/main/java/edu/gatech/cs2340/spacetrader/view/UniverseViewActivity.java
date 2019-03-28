@@ -41,7 +41,7 @@ public class UniverseViewActivity extends AppCompatActivity {
 
         Log.v("APP", "Universe:");
         for (int i = 0; i < universe.getNumSolarSystems(); i++) {
-            Log.v("APP", "Solar System #" + (i+1) + ": " + universe.getSolarSystem(i).toString());
+            Log.v("APP", "Solar System #" + (i + 1) + ": " + universe.getSolarSystem(i).toString());
         }
     }
 

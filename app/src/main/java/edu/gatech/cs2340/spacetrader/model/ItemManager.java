@@ -27,8 +27,8 @@ public class ItemManager {
         return items.get(name);
     }
 
-    public static ItemManager getItemManager(){
-        if(instance == null){
+    public static ItemManager getItemManager() {
+        if (instance == null) {
             instance = new ItemManager();
         }
         return instance;

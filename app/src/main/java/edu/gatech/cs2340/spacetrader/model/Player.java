@@ -17,7 +17,7 @@ public class Player implements Serializable {
 
     private Player(String playerName, int engineerSkillPoints, int fighterSkillPoints,
                    int pilotSkillPoints, int traderSkillPoints, int freeSkillPoints,
-                   int credits, Ship ship){
+                   int credits, Ship ship) {
         this.playerName = playerName;
         this.engineerSkillPoints = engineerSkillPoints;
         this.fighterSkillPoints = fighterSkillPoints;

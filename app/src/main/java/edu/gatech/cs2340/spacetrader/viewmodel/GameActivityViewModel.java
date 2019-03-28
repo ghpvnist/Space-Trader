@@ -6,7 +6,7 @@ public class GameActivityViewModel {
 
     private Universe universe;
 
-    public GameActivityViewModel(){
+    public GameActivityViewModel() {
         this.universe = new Universe();
     }
 

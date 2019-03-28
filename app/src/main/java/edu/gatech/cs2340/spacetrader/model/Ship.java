@@ -75,23 +75,23 @@ public class Ship implements Serializable {
         return 0;
     }
 
-    public void addCargo(String itemName, int quantity){
+    public void addCargo(String itemName, int quantity) {
 
-        if(currentCargo + quantity > this.shipType.getCargoSize()){
+        if (currentCargo + quantity > this.shipType.getCargoSize()) {
             throw new RuntimeException("Not enough room for adding cargo");
         }
 
         currentCargo += quantity;
-        if(this.cargo.containsKey(itemName)){
+        if (this.cargo.containsKey(itemName)) {
             this.cargo.put(itemName, this.cargo.get(itemName) + quantity);
         } else {
             this.cargo.put(itemName, quantity);
         }
     }
 
-    public void removeCargo(String itemName, int quantity){
+    public void removeCargo(String itemName, int quantity) {
 
-        if(!this.cargo.containsKey(itemName)) {
+        if (!this.cargo.containsKey(itemName)) {
             throw new RuntimeException("No such cargo itemName to remove");
         } else {
             int curQuantity = this.cargo.get(itemName);
@@ -108,7 +108,7 @@ public class Ship implements Serializable {
         }
     }
 
-    public int getSellPrice(){
+    public int getSellPrice() {
 
         return (int) this.shipType.getCost() * currentHealth / this.shipType.getMaxHealth();
 

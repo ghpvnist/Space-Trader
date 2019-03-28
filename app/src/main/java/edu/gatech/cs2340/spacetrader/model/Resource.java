@@ -39,7 +39,9 @@ public enum Resource implements Serializable {
         return resourceName;
     }
 
-    public int getResourceLevel() { return resourceLevel; }
+    public int getResourceLevel() {
+        return resourceLevel;
+    }
 
     public static Resource get(int rank) {
         return lookup.get(rank);

@@ -11,7 +11,7 @@ public class SolarSystem implements Serializable {
     private TechLevel techLevel;
     private Resource resources;
 
-    public SolarSystem(String name, int x, int y, int techRank, int resourceRank){
+    public SolarSystem(String name, int x, int y, int techRank, int resourceRank) {
 
         this.x = x;
         this.y = y;
@@ -74,7 +74,7 @@ public class SolarSystem implements Serializable {
     }
 
     public String toString() {
-        return  "name = " + name + ", " +
+        return "name = " + name + ", " +
                 "x = " + x + ", " +
                 "y = " + y + ", " +
                 "tech_level = " + techLevel.toString() + ", " +

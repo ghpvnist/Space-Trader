@@ -48,18 +48,18 @@ public class ItemType {
         this.techLevelValueModifiers = techLevelValueModifiers;
     }
 
-    public double getAdjustedQuantity(Planet planet){
+    public double getAdjustedQuantity(Planet planet) {
         double techLevelModifier = this.techLevelValueModifiers.get(planet.getPlanetTechLevel());
         double resourceModifier = this.resourceValueModifiers.get(planet.getPlanetResource());
 
-        if(techLevelModifier == 0 || resourceModifier == 0){
+        if (techLevelModifier == 0 || resourceModifier == 0) {
             return 0;
         }
 
-        return  100/(techLevelModifier * resourceModifier);
+        return 100 / (techLevelModifier * resourceModifier);
     }
 
-    public double getAdjustedPrice(Planet planet){
+    public double getAdjustedPrice(Planet planet) {
         TechLevel techLevel = planet.getPlanetTechLevel();
         Resource resource = planet.getPlanetResource();
         return basePrice * this.techLevelValueModifiers.get(techLevel) * this.resourceValueModifiers.get(resource);

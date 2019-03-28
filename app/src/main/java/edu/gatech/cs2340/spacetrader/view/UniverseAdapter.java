@@ -60,18 +60,27 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         this.universe = universe;
     }
 
-    public void setPlayer(Player player) { this.player = player; }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     private int getPlanetIcon(SolarSystem system) {
         int idx = (10000 + system.getX() + system.getY()) % 6;
-        switch(idx) {
-            case 0: return R.drawable.planet1;
-            case 1: return R.drawable.planet2;
-            case 2: return R.drawable.planet3;
-            case 3: return R.drawable.planet4;
-            case 4: return R.drawable.planet5;
-            case 5: return R.drawable.planet6;
-            default: return R.drawable.planet1;
+        switch (idx) {
+            case 0:
+                return R.drawable.planet1;
+            case 1:
+                return R.drawable.planet2;
+            case 2:
+                return R.drawable.planet3;
+            case 3:
+                return R.drawable.planet4;
+            case 4:
+                return R.drawable.planet5;
+            case 5:
+                return R.drawable.planet6;
+            default:
+                return R.drawable.planet1;
         }
     }
 

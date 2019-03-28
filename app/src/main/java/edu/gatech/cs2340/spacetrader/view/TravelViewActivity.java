@@ -49,7 +49,7 @@ public class TravelViewActivity extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width*0.8), (int) (height*0.4));
+        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.4));
 
         travelText = findViewById(R.id.travelText);
         travelText.setText("Traveling to " + system.getName());
@@ -59,7 +59,7 @@ public class TravelViewActivity extends AppCompatActivity {
         int curY = player.getCurrentPlanet().getY();
         int nextX = system.getX();
         int nextY = system.getY();
-        int miles = (int) Math.pow((Math.pow((double) (nextY - curY), 2) + (Math.pow((double) (nextX - curX), 2))), 1/2);
+        int miles = (int) Math.pow((Math.pow((double) (nextY - curY), 2) + (Math.pow((double) (nextX - curX), 2))), 1 / 2);
         distance.setText("Distance: " + Integer.toString(miles));
 
         fuelCost = findViewById(R.id.fuelCost);
@@ -85,7 +85,7 @@ public class TravelViewActivity extends AppCompatActivity {
         });
     }
 
-    public void travel(){
+    public void travel() {
         player.addCredits(-1);
         player.setCurrentPlanet(system.getPlanets()[0]);
         Log.i("Here", "Resume " + this.player.getCurrentPlanet().getName());

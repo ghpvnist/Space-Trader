@@ -30,12 +30,12 @@ public class Store implements Serializable {
     }
 
     //buying from the store
-    public int sellOffer(int offerIndex, int quantity){
-        if(offerIndex > tradeOffers.length){
+    public int sellOffer(int offerIndex, int quantity) {
+        if (offerIndex > tradeOffers.length) {
             throw new RuntimeException("TradeOffer index does not exist");
         }
 
-        if(tradeOffers[offerIndex].getItemQuantity() < quantity){
+        if (tradeOffers[offerIndex].getItemQuantity() < quantity) {
             throw new RuntimeException("TradeOffer does not have enough quantity to sell");
         }
 
@@ -47,8 +47,8 @@ public class Store implements Serializable {
     }
 
     //selling to the store
-    public int buyOffer(int offerIndex, int quantity){
-        if(offerIndex > tradeOffers.length){
+    public int buyOffer(int offerIndex, int quantity) {
+        if (offerIndex > tradeOffers.length) {
             throw new RuntimeException("TradeOffer index does not exist");
         }
 
@@ -59,20 +59,20 @@ public class Store implements Serializable {
 
     }
 
-    public int buyFuel(int quantity){
+    public int buyFuel(int quantity) {
         return 10 * quantity;
     }
 
-    public void updateStore(){
+    public void updateStore() {
         Random rand = new Random();
 
-        for(TradeOffer tradeOffer: tradeOffers){
+        for (TradeOffer tradeOffer : tradeOffers) {
 
             //expected value of about 1
             double x = 4 * rand.nextDouble() - 2;
             double multiplier = 2.27 * Math.pow(Math.E, -1 * Math.pow(x, 2));
 
-            if(tradeOffer.getItemQuantity() > tradeOffer.getDefaultQuantity()){
+            if (tradeOffer.getItemQuantity() > tradeOffer.getDefaultQuantity()) {
                 tradeOffer.setItemQuantity((int) (tradeOffer.getItemQuantity() * multiplier));
             } else {
                 tradeOffer.setItemQuantity((int) (tradeOffer.getDefaultQuantity() * multiplier));
