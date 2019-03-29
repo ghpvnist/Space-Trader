@@ -49,8 +49,8 @@ public class ItemType {
     }
 
     public double getAdjustedQuantity(Planet planet) {
-        double techLevelModifier = this.techLevelValueModifiers.get(planet.getPlanetTechLevel());
-        double resourceModifier = this.resourceValueModifiers.get(planet.getPlanetResource());
+        double techLevelModifier = this.getTechLevelValueModifier(planet.getPlanetTechLevel());
+        double resourceModifier = this.getResourceValueModifier(planet.getPlanetResource());
 
         if (techLevelModifier == 0 || resourceModifier == 0) {
             return 0;
@@ -59,10 +59,30 @@ public class ItemType {
         return 100 / (techLevelModifier * resourceModifier);
     }
 
+    private double getResourceValueModifier(Resource planetResource) {
+        if (this.resourceValueModifiers == null) {
+            return 1.0;
+        } else if (!this.resourceValueModifiers.containsKey(planetResource)) {
+            return 1.0;
+        } else {
+            return this.resourceValueModifiers.get(planetResource);
+        }
+    }
+
+    private double getTechLevelValueModifier(TechLevel planetTechLevel) {
+        if (this.techLevelValueModifiers == null) {
+            return 1.0;
+        } else if (!this.techLevelValueModifiers.containsKey(planetTechLevel)) {
+            return 1.0;
+        } else {
+            return this.techLevelValueModifiers.get(planetTechLevel);
+        }
+    }
+
     public double getAdjustedPrice(Planet planet) {
         TechLevel techLevel = planet.getPlanetTechLevel();
         Resource resource = planet.getPlanetResource();
-        return basePrice * this.techLevelValueModifiers.get(techLevel) * this.resourceValueModifiers.get(resource);
+        return basePrice * this.getTechLevelValueModifier(techLevel) * this.getResourceValueModifier(resource);
     }
 
 }
