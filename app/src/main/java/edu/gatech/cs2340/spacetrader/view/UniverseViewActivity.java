@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.Player;
@@ -20,6 +21,7 @@ public class UniverseViewActivity extends AppCompatActivity {
     private Universe universe;
     private Player player;
     private UniverseAdapter adapter;
+    private TextView fuelText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class UniverseViewActivity extends AppCompatActivity {
         for (int i = 0; i < universe.getNumSolarSystems(); i++) {
             Log.v("APP", "Solar System #" + (i + 1) + ": " + universe.getSolarSystem(i).toString());
         }
+
+        fuelText = findViewById(R.id.fuelText);
+        fuelText.setText("Available Fuel: " + player.getShip().getCurrentFuel());
+
     }
 
     @Override

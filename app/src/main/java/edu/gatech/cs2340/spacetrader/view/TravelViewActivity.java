@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.Player;
@@ -30,6 +31,8 @@ public class TravelViewActivity extends AppCompatActivity {
     private Button cancelButton;
     private Button goButton;
     private SolarSystem system;
+    private int miles;
+    private int cost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +62,12 @@ public class TravelViewActivity extends AppCompatActivity {
         int curY = player.getCurrentPlanet().getY();
         int nextX = system.getX();
         int nextY = system.getY();
-        int miles = (int) Math.pow((Math.pow((double) (nextY - curY), 2) + (Math.pow((double) (nextX - curX), 2))), 1 / 2);
+        miles = (int) Math.pow((Math.pow((double) (nextY - curY), 2) + (Math.pow((double) (nextX - curX), 2))), 0.5);
         distance.setText("Distance: " + Integer.toString(miles));
 
+        cost = miles/20;
         fuelCost = findViewById(R.id.fuelCost);
-        fuelCost.setText("Fuel Cost: 1");
+        fuelCost.setText("Fuel Cost: " + Integer.toString(cost));
 
         planetImage = findViewById(R.id.planetImage);
         planetImage.setImageResource(planetIcon);
@@ -86,10 +90,15 @@ public class TravelViewActivity extends AppCompatActivity {
     }
 
     public void travel() {
-        player.addCredits(-1);
-        player.setCurrentPlanet(system.getPlanets()[0]);
-        Log.i("Here", "Resume " + this.player.getCurrentPlanet().getName());
-        finish();
+        int currentFuel = player.getShip().getCurrentFuel();
+        if(currentFuel >= cost) {
+            player.getShip().setCurrentFuel(currentFuel - (cost));
+            player.setCurrentPlanet(system.getPlanets()[0]);
+            Toast.makeText(getApplicationContext(),"Traveled to the " + system.getName(),Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

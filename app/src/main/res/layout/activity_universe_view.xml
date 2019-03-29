@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.UniverseViewActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/systemList"
-        android:layout_width="387dp"
-        android:layout_height="577dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:listitem="@layout/solar_system_layout" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="333dp"
@@ -29,4 +19,24 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fuelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/systemList"
+        android:layout_width="387dp"
+        android:layout_height="577dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuelText"
+        tools:listitem="@layout/solar_system_layout" />
+
 </android.support.constraint.ConstraintLayout>
