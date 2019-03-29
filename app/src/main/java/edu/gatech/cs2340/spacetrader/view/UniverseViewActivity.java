@@ -57,5 +57,6 @@ public class UniverseViewActivity extends AppCompatActivity {
 
         adapter.setUniverse(universe);
         adapter.setPlayer(player);
+        fuelText.setText("Available Fuel: " + player.getShip().getCurrentFuel());
     }
 }
