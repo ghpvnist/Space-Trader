@@ -4,17 +4,21 @@ import java.io.Serializable;
 
 public class TradeOffer implements Serializable {
 
+    private final String itemId;
     private String itemName;
     private int itemPrice;
     private int itemQuantity;
     private final int defaultQuantity;
 
-    public TradeOffer(String itemName, int itemPrice, int itemQuantity) {
+    public TradeOffer(String itemName, String itemId, int itemPrice, int itemQuantity) {
         this.itemName = itemName;
+        this.itemId = itemId;
         this.itemPrice = itemPrice;
         this.itemQuantity = itemQuantity;
         this.defaultQuantity = itemQuantity;
     }
+
+    public String getItemId() { return itemId; }
 
     public String getItemName() {
         return itemName;

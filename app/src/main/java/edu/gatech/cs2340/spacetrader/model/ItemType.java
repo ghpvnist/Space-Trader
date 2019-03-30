@@ -1,20 +1,29 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ItemType {
 
+    private String itemId;
     private String name;
     private double basePrice;
     private Map<Resource, Double> resourceValueModifiers;
     private Map<TechLevel, Double> techLevelValueModifiers;
 
-    public ItemType(String name, double basePrice, Map<Resource, Double> resourceValueModifiers, Map<TechLevel, Double> techLevelValueModifiers) {
+    public ItemType(String name, String itemId, double basePrice, Map<Resource, Double> resourceValueModifiers, Map<TechLevel, Double> techLevelValueModifiers) {
         this.name = name;
+        this.itemId = itemId;
         this.basePrice = basePrice;
         this.resourceValueModifiers = resourceValueModifiers;
         this.techLevelValueModifiers = techLevelValueModifiers;
     }
+
+    public ItemType(String name, String itemId, double basePrice) {
+        this(name, itemId, basePrice, new HashMap<Resource, Double>(), new HashMap<TechLevel, Double>());
+    }
+
+    public String getItemId() { return itemId; }
 
     public String getName() {
         return name;

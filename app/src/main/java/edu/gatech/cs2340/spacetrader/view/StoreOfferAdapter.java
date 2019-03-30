@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
+
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.Store;
 import edu.gatech.cs2340.spacetrader.model.TradeOffer;
@@ -66,7 +68,13 @@ class StoreOfferAdapter extends RecyclerView.Adapter<StoreOfferAdapter.StoreOffe
     }
 
     private void updateOfferHolder(StoreOfferViewHolder storeOfferHolder, TradeOffer offer) {
-        storeOfferHolder.itemImage.setImageResource(R.drawable.log_resource_320);
+        try {
+            Class res = R.drawable.class;
+            Field field = res.getField(offer.getItemId() + "_resource_320");
+            storeOfferHolder.itemImage.setImageResource(field.getInt(null));
+        } catch(Exception e) {
+            storeOfferHolder.itemImage.setImageResource(R.drawable.log_resource_320);
+        }
         storeOfferHolder.itemName.setText(offer.getItemName());
         storeOfferHolder.itemPrice.setText("$" + String.valueOf(offer.getItemPrice()));
         storeOfferHolder.itemStock.setText("x" + String.valueOf(offer.getItemQuantity()));

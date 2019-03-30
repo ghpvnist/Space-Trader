@@ -1,6 +1,12 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import android.content.ClipData;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Planet implements Serializable {
 
@@ -44,13 +50,31 @@ public class Planet implements Serializable {
 
         this.store = new Store(name + " Store", tradeOffers);*/
 
-        TradeOffer[] tradeOffers = new TradeOffer[4];
-        tradeOffers[0] = new TradeOffer("Wood Log", 50, 8);
-        tradeOffers[2] = new TradeOffer("Patrick", 550, 0);
-        tradeOffers[1] = new TradeOffer("Machine Parts", 170, 25);
-        tradeOffers[3] = new TradeOffer("Banana", 7, 50);
+        ItemManager im = ItemManager.getItemManager();
+        List<ItemType> validItems = Arrays.asList(im.getItemList());
+        Collections.shuffle(validItems);
 
-        this.store = new Store("Bandhi's Trinket Shack", tradeOffers);
+        TradeOffer[] tradeOffers = new TradeOffer[3 + ItemManager.getRNG().nextInt(3)];
+        for (int i = 0; i < tradeOffers.length; i++) {
+            tradeOffers[i] = new TradeOffer(validItems.get(i).getName(), validItems.get(i).getItemId(),
+                    (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice(this) + 0.5),
+                    (int)(getRandomAdjust() * getRandomAdjust() * 12 - 2));
+        }
+
+        this.store = new Store(generateRandomStoreName(), tradeOffers);
+    }
+
+    private static String generateRandomStoreName() {
+        String[] firstPart = new String[] {"Bandhi's", "Kevin's", "Xatu's", "Slim's", "Wange's"};
+        String[] secondPart = new String[] {"Cheap", "High Quality", "Knockoff", "Authentic", "Discount"};
+        String[] thirdPart = new String[] {"Trinkets", "Items", "Goods", "Wares", "Memes", "Deets", "Shop"};
+        return firstPart[ItemManager.getRNG().nextInt(firstPart.length)] + " "
+                + secondPart[ItemManager.getRNG().nextInt(secondPart.length)] + " "
+                + thirdPart[ItemManager.getRNG().nextInt(thirdPart.length)];
+    }
+
+    private double getRandomAdjust() {
+        return 0.8 + (0.4 * ItemManager.getRNG().nextDouble());
     }
 
     public Store getStore() {
