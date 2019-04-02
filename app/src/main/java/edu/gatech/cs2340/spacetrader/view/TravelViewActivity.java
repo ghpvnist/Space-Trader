@@ -99,6 +99,12 @@ public class TravelViewActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
         }
+
+        Intent intent = new Intent(this, GameActivity.class);
+        finish();
+        startActivity(intent);
+
+
     }
 
     @Override

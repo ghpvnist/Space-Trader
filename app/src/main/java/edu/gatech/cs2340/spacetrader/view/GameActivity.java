@@ -39,24 +39,24 @@ public class GameActivity extends AppCompatActivity {
 
         if (this.player.getCurrentPlanet() == null) {
             this.player.setCurrentPlanet(this.universe.getSolarSystem(0).getPlanets()[0]);
-        }
 
-        AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
-        alertDialog.setTitle("Welcome " + this.player.getPlayerName() + "!");
-        alertDialog.setMessage("Credits: " + this.player.getCredits()
-                + "\nShip: " + this.player.getShip().getShipType()
-                + "\nEngineer: " + this.player.getEngineerSkillPoints()
-                + "\nFighter: " + this.player.getFighterSkillPoints()
-                + "\nPilot: " + this.player.getPilotSkillPoints()
-                + "\nTrader: " + this.player.getTraderSkillPoints());
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-        Log.v("GAME", "CREATED!");
+            AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
+            alertDialog.setTitle("Welcome " + this.player.getPlayerName() + "!");
+            alertDialog.setMessage("Credits: " + this.player.getCredits()
+                    + "\nShip: " + this.player.getShip().getShipType()
+                    + "\nEngineer: " + this.player.getEngineerSkillPoints()
+                    + "\nFighter: " + this.player.getFighterSkillPoints()
+                    + "\nPilot: " + this.player.getPilotSkillPoints()
+                    + "\nTrader: " + this.player.getTraderSkillPoints());
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            Log.v("GAME", "CREATED!");
+        }
 
         viewUniverseButton = findViewById(R.id.viewUniverseButton);
         viewUniverseButton.setOnClickListener(new View.OnClickListener() {
