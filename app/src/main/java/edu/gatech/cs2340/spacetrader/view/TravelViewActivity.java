@@ -96,15 +96,11 @@ public class TravelViewActivity extends AppCompatActivity {
             player.setCurrentPlanet(system.getPlanets()[0]);
             Toast.makeText(getApplicationContext(),"Traveled to the " + system.getName(),Toast.LENGTH_SHORT).show();
             finish();
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
         }
-
-        Intent intent = new Intent(this, GameActivity.class);
-        finish();
-        startActivity(intent);
-
-
     }
 
     @Override
