@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,10 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         holder.solarSystemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UniverseAdapter.this.openTravelView(v);
+                SolarSystem system = (SolarSystem) v.findViewById(R.id.systemName).getTag();
+                if(!system.getPlanets()[0].getName().equals(gameData.getPlayer().getCurrentPlanet().getName())){
+                    UniverseAdapter.this.openTravelView(v);
+                }
             }
         });
     }

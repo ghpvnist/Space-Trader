@@ -12,9 +12,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
+
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.RandomEvent;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 import edu.gatech.cs2340.spacetrader.viewmodel.GameActivityViewModel;
 
@@ -70,6 +75,26 @@ public class GameActivity extends AppCompatActivity {
 
         currentPlanetText = findViewById(R.id.currentPlanetText);
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
+
+        Intent intent = getIntent();
+        int eventNumber = intent.getIntExtra("eventNumber", Integer.MAX_VALUE);
+        this.executeRandomEvent(eventNumber);
+    }
+
+    public void executeRandomEvent(int eventNumber) {
+        RandomEvent event = new RandomEvent(eventNumber);
+        if(event.execute()) {
+            AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
+            alertDialog.setTitle("An Event Occurred!");
+            alertDialog.setMessage(event.getMessage());
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
     }
 
     @Override
@@ -111,5 +136,15 @@ public class GameActivity extends AppCompatActivity {
         builder.setNegativeButton("CANCEL", null);
 
         builder.show();
+    }
+
+    @Override
+    public void onStop() {
+        try{
+            this.viewModel.saveGameData(this);
+        } catch(Exception e){
+            throw new RuntimeException("Game Data not saved");
+        }
+        super.onStop();
     }
 }

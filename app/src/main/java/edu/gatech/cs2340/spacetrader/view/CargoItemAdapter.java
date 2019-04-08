@@ -17,18 +17,19 @@ import java.util.List;
 import java.util.Map;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 
 public class CargoItemAdapter extends RecyclerView.Adapter<CargoItemAdapter.CargoItemViewHolder> {
 
-    private Player player;
+    private GameData gameData;
     private Map<String, Integer> cargo;
     private List<String> sortedCargoKeys;
 
     public CargoItemAdapter() {
         super();
-        player = Player.getInstance();
-        cargo = player.getShip().getCargo();
+        gameData = GameData.getInstance();
+        cargo = gameData.getPlayer().getShip().getCargo();
         sortedCargoKeys = new ArrayList<>(cargo.keySet());
         Log.d("APP", "We have " + sortedCargoKeys.size() + " items!");
         Collections.sort(sortedCargoKeys);

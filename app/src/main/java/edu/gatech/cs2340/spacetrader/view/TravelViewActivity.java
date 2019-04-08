@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.spacetrader.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.RandomEvent;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
@@ -85,12 +90,16 @@ public class TravelViewActivity extends AppCompatActivity {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TravelViewActivity.this.travel();
+                try {
+                    TravelViewActivity.this.travel();
+                } catch(Exception e) {
+
+                }
             }
         });
     }
 
-    public void travel() {
+    public void travel() throws InterruptedException{
         int currentFuel = this.gameData.getPlayer().getShip().getCurrentFuel();
         if(currentFuel >= cost) {
             this.gameData.getPlayer().getShip().setCurrentFuel(currentFuel - (cost));
@@ -98,12 +107,18 @@ public class TravelViewActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Traveled to the " + system.getName(),Toast.LENGTH_SHORT).show();
             finish();
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("eventNumber", this.generateRandomEvent());
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
         }
     }
 
+    public int generateRandomEvent() throws InterruptedException{
+        Random rand = new Random();
+        int x = rand.nextInt(4);
+        return x;
+    }
     @Override
     public void onBackPressed() {
         finish();
