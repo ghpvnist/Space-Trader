@@ -1,8 +1,10 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
 import edu.gatech.cs2340.spacetrader.model.DifficultyLevel;
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Ship;
+import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class CreateAccountViewModel {
 
@@ -94,8 +96,11 @@ public class CreateAccountViewModel {
         return remainingSkillPoints == 0;
     }
 
-    public void initializePlayer(String playerName, DifficultyLevel difficulty) {
+    public void initializeGameData(String playerName, DifficultyLevel difficulty) {
         Player.instantiatePlayer(playerName, engineerSkillPoints, fighterSkillPoints,
                 pilotSkillPoints, traderSkillPoints, 0, 1000, new Ship());
+        Universe universe = new Universe();
+        GameData.instantiateGameData(Player.getInstance(), universe);
     }
+
 }

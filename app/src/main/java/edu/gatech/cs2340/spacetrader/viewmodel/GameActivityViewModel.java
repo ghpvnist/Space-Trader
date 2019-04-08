@@ -1,20 +1,23 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
+import edu.gatech.cs2340.spacetrader.model.GameData;
+import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class GameActivityViewModel {
 
-    private Universe universe;
+    private GameData gameData;
 
     public GameActivityViewModel() {
-        this.universe = new Universe();
+
+        this.gameData = GameData.getInstance();
     }
 
-    public Universe getUniverse() {
-        return universe;
+    public GameData getGameData() {
+        return gameData;
     }
 
-    public void setUniverse(Universe universe) {
-        this.universe = universe;
+    public void setGameData(GameData gameData) {
+        this.gameData = gameData;
     }
 }

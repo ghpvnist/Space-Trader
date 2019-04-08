@@ -12,14 +12,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.UniverseViewHolder> {
 
-    private Universe universe;
-    private Player player;
+    private GameData gameData;
+
+    public UniverseAdapter(){
+        this.gameData = GameData.getInstance();
+    }
 
     @NonNull
     @Override
@@ -32,7 +36,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
 
     @Override
     public void onBindViewHolder(@NonNull UniverseViewHolder holder, int pos) {
-        SolarSystem system = universe.getSolarSystem(pos);
+        SolarSystem system = gameData.getUniverse().getSolarSystem(pos);
 
         int planetIcon = getPlanetIcon(system);
         holder.planetImage.setImageResource(planetIcon);
@@ -52,16 +56,16 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
 
     @Override
     public int getItemCount() {
-        if (universe == null) return 0;
-        return universe.getNumSolarSystems();
+        if (gameData.getUniverse() == null) return 0;
+        return gameData.getUniverse().getNumSolarSystems();
     }
 
     public void setUniverse(Universe universe) {
-        this.universe = universe;
+        this.gameData.setUniverse(universe);
     }
 
     public void setPlayer(Player player) {
-        this.player = player;
+        this.gameData.setPlayer(player);
     }
 
     private int getPlanetIcon(SolarSystem system) {

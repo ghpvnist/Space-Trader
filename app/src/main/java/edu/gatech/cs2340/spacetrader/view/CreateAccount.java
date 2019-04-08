@@ -165,7 +165,7 @@ public class CreateAccount extends AppCompatActivity {
             toast.show();
             return;
         }
-        viewModel.initializePlayer(playerName, DifficultyLevel.NORMAL);
+        viewModel.initializeGameData(playerName, DifficultyLevel.NORMAL);
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
         finish();
