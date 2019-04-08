@@ -31,12 +31,8 @@ public class GameDataFacade {
         ObjectInputStream is = new ObjectInputStream(fis);
         Log.i("Data", "Opened Streams");
         GameData gameData = (GameData) is.readObject();
-        try {
-            GameData.instantiateGameData(gameData.getPlayer(), gameData.getUniverse());
-        } catch(Exception e) {
-            GameData.getInstance().setPlayer(gameData.getPlayer());
-            GameData.getInstance().setUniverse(gameData.getUniverse());
-        }
+        GameData.getInstance().setPlayer(gameData.getPlayer());
+        GameData.getInstance().setUniverse(gameData.getUniverse());
         Log.i("Data", "Loaded From File");
         is.close();
         fis.close();

@@ -11,6 +11,9 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.GameData;
+import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.Universe;
 import edu.gatech.cs2340.spacetrader.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.viewModel = new MainActivityViewModel();
+
+        Player player = new Player();
+
+        try {
+            GameData.instantiateGameData(player, new Universe());
+        } catch(Exception e) {
+
+        }
+
     }
 
     public void onClick(View v) {

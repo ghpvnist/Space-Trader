@@ -97,10 +97,11 @@ public class CreateAccountViewModel {
     }
 
     public void initializeGameData(String playerName, DifficultyLevel difficulty) {
-        Player.instantiatePlayer(playerName, engineerSkillPoints, fighterSkillPoints,
+        Player player = new Player(playerName, engineerSkillPoints, fighterSkillPoints,
                 pilotSkillPoints, traderSkillPoints, 0, 1000, new Ship());
         Universe universe = new Universe();
-        GameData.instantiateGameData(Player.getInstance(), universe);
+        GameData.getInstance().setPlayer(player);
+        GameData.getInstance().setUniverse(universe);
     }
 
 }
