@@ -1,20 +1,22 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 
 public class ViewCargoViewModel {
 
-    private Player player;
+    private GameData gameData;
 
     public ViewCargoViewModel() {
-        player = Player.getInstance();
+
+        this.gameData = GameData.getInstance();
     }
 
     public int getAvailableCargoSpace() {
-        return getMaxCargoSpace() - player.getShip().getCurrentCargo();
+        return getMaxCargoSpace() - this.gameData.getPlayer().getShip().getCurrentCargo();
     }
 
     public int getMaxCargoSpace() {
-        return player.getShip().getShipType().getCargoSize();
+        return this.gameData.getPlayer().getShip().getShipType().getCargoSize();
     }
 }

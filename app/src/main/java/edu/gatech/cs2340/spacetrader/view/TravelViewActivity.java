@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.spacetrader.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,14 +18,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
+import edu.gatech.cs2340.spacetrader.model.RandomEvent;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class TravelViewActivity extends AppCompatActivity {
 
-    private Player player;
+    private GameData gameData;
     private TextView travelText;
     private TextView distance;
     private TextView fuelCost;
@@ -42,8 +48,8 @@ public class TravelViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         int planetIcon = (int) extras.getInt("planetImage");
-        player = Player.getInstance();
         system = (SolarSystem) extras.getSerializable("system");
+        this.gameData = GameData.getInstance();
 
         //Make this a pop-up window
         DisplayMetrics dm = new DisplayMetrics();
@@ -58,8 +64,8 @@ public class TravelViewActivity extends AppCompatActivity {
         travelText.setText("Traveling to " + system.getName());
 
         distance = findViewById(R.id.distance);
-        int curX = player.getCurrentPlanet().getX();
-        int curY = player.getCurrentPlanet().getY();
+        int curX = this.gameData.getPlayer().getCurrentPlanet().getX();
+        int curY = this.gameData.getPlayer().getCurrentPlanet().getY();
         int nextX = system.getX();
         int nextY = system.getY();
         miles = (int) Math.pow((Math.pow((double) (nextY - curY), 2) + (Math.pow((double) (nextX - curX), 2))), 0.5);
@@ -84,25 +90,35 @@ public class TravelViewActivity extends AppCompatActivity {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TravelViewActivity.this.travel();
+                try {
+                    TravelViewActivity.this.travel();
+                } catch(Exception e) {
+
+                }
             }
         });
     }
 
-    public void travel() {
-        int currentFuel = player.getShip().getCurrentFuel();
+    public void travel() throws InterruptedException{
+        int currentFuel = this.gameData.getPlayer().getShip().getCurrentFuel();
         if(currentFuel >= cost) {
-            player.getShip().setCurrentFuel(currentFuel - (cost));
-            player.setCurrentPlanet(system.getPlanets()[0]);
+            this.gameData.getPlayer().getShip().setCurrentFuel(currentFuel - (cost));
+            this.gameData.getPlayer().setCurrentPlanet(system.getPlanets()[0]);
             Toast.makeText(getApplicationContext(),"Traveled to the " + system.getName(),Toast.LENGTH_SHORT).show();
             finish();
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("eventNumber", this.generateRandomEvent());
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
         }
     }
 
+    public int generateRandomEvent() throws InterruptedException{
+        Random rand = new Random();
+        int x = rand.nextInt(4);
+        return x;
+    }
     @Override
     public void onBackPressed() {
         finish();

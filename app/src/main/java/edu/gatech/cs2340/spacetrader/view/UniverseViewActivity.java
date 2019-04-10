@@ -13,13 +13,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import edu.gatech.cs2340.spacetrader.R;
+import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
 public class UniverseViewActivity extends AppCompatActivity {
 
-    private Universe universe;
-    private Player player;
+    private GameData gameData;
     private UniverseAdapter adapter;
     private TextView fuelText;
 
@@ -28,10 +28,7 @@ public class UniverseViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universe_view);
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        universe = (Universe) extras.getSerializable("universe");
-        player = Player.getInstance();
+        gameData = GameData.getInstance();
 
         RecyclerView recyclerView = findViewById(R.id.systemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,12 +39,12 @@ public class UniverseViewActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         Log.v("APP", "Universe:");
-        for (int i = 0; i < universe.getNumSolarSystems(); i++) {
-            Log.v("APP", "Solar System #" + (i + 1) + ": " + universe.getSolarSystem(i).toString());
+        for (int i = 0; i < gameData.getUniverse().getNumSolarSystems(); i++) {
+            Log.v("APP", "Solar System #" + (i + 1) + ": " + gameData.getUniverse().getSolarSystem(i).toString());
         }
 
         fuelText = findViewById(R.id.fuelText);
-        fuelText.setText("Available Fuel: " + player.getShip().getCurrentFuel());
+        fuelText.setText("Available Fuel: " + gameData.getPlayer().getShip().getCurrentFuel());
 
     }
 
@@ -55,8 +52,8 @@ public class UniverseViewActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        adapter.setUniverse(universe);
-        adapter.setPlayer(player);
-        fuelText.setText("Available Fuel: " + player.getShip().getCurrentFuel());
+        adapter.setUniverse(gameData.getUniverse());
+        adapter.setPlayer(gameData.getPlayer());
+        fuelText.setText("Available Fuel: " + gameData.getPlayer().getShip().getCurrentFuel());
     }
 }

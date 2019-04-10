@@ -29,7 +29,7 @@ public class Planet implements Serializable {
         this.planetResource = resource;
         this.planetTechLevel = techLevel;
 
-        //TODO uncomment this code after finish coding ItemManager
+
         /*ItemType[] items = ItemManager.getItemManager().getItemList();
         ArrayList<TradeOffer> offers = new ArrayList<TradeOffer>();
         Random rand = new Random();

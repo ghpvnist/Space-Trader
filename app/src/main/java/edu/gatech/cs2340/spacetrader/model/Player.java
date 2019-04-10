@@ -13,9 +13,11 @@ public class Player implements Serializable {
     private Ship ship;
     private Planet currentPlanet;
 
-    private static Player INSTANCE = null;
+    public Player() {
 
-    private Player(String playerName, int engineerSkillPoints, int fighterSkillPoints,
+    }
+
+    public Player(String playerName, int engineerSkillPoints, int fighterSkillPoints,
                    int pilotSkillPoints, int traderSkillPoints, int freeSkillPoints,
                    int credits, Ship ship) {
         this.playerName = playerName;
@@ -26,25 +28,6 @@ public class Player implements Serializable {
         this.remainingSkillPoints = freeSkillPoints;
         this.credits = credits;
         this.ship = ship;
-    }
-
-    public static Player getInstance() {
-        if (INSTANCE == null) throw new RuntimeException("Player not yet instantiated!");
-        return INSTANCE;
-    }
-
-    public static Player instantiatePlayer(String playerName, int engineerSkillPoints,
-                                           int fighterSkillPoints, int pilotSkillPoints,
-                                           int traderSkillPoints, int freeSkillPoints,
-                                           int credits, Ship ship) {
-        if (INSTANCE != null) throw new RuntimeException("Player already instantiated!");
-        INSTANCE = new Player(playerName, engineerSkillPoints, fighterSkillPoints,
-                pilotSkillPoints, traderSkillPoints, freeSkillPoints, credits, ship);
-        return INSTANCE;
-    }
-
-    public static Player instantiatePlayer() {
-        return instantiatePlayer("Han", 0, 0, 0, 0, 16, 1000, new Ship());
     }
 
     public String getPlayerName() {
@@ -148,5 +131,16 @@ public class Player implements Serializable {
 
     public void addCredits(int credits) {
         setCredits(getCredits() + credits);
+    }
+
+    public void setSkillPoints(int engineerSkillPoints, int fighterSkillPoints,
+                   int pilotSkillPoints, int traderSkillPoints, int freeSkillPoints) {
+
+        this.engineerSkillPoints = engineerSkillPoints;
+        this.fighterSkillPoints = fighterSkillPoints;
+        this.pilotSkillPoints = pilotSkillPoints;
+        this.traderSkillPoints = traderSkillPoints;
+        this.remainingSkillPoints = freeSkillPoints;
+
     }
 }
