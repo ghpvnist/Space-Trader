@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.StoreViewActivity"></activity>
+        <activity android:name=".Universe2DViewActivity"></activity>
+        <activity android:name=".view.StoreViewActivity" />
         <activity android:name=".view.ViewCargoActivity" />
         <activity
             android:name=".view.MainGameActivity"
@@ -31,9 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.TravelViewActivity"
-            android:theme="@style/AppTheme.TransparentBackground">
-        </activity>
+        <activity
+            android:name=".view.TravelViewActivity"
+            android:theme="@style/AppTheme.TransparentBackground"></activity>
     </application>
 
 </manifest>
