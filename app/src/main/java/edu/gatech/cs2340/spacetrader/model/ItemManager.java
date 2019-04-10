@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Class that contains all of the possible items in the universe
+ */
 public class ItemManager {
 
     private static ItemManager instance = null;
@@ -29,18 +32,35 @@ public class ItemManager {
         }
     }
 
+    /**
+     * Returns the map that contains all the possible items
+     * @return items the map that contains the possible items
+     */
     public Map<String, ItemType> getItems() {
         return items;
     }
 
+    /**
+     * Returns the array representation of the list of possible items
+     * @return itemList the list of possible items
+     */
     public ItemType[] getItemList() {
         return itemList;
     }
 
+    /**
+     * Returns the itemType from its name field
+     * @param name the name field of the itemType
+     * @return item the itemType with the corresponding name field
+     */
     public ItemType getItem(String name) {
         return items.get(name);
     }
 
+    /**
+     * Returns the INSTANCE of the singleton class
+     * @return INSTANCE the instance of the singleton class
+     */
     public static ItemManager getItemManager() {
         if (instance == null) {
             instance = new ItemManager();
@@ -48,6 +68,10 @@ public class ItemManager {
         return instance;
     }
 
+    /**
+     * Returns a Random object to add RNG into prices for the game
+     * @return
+     */
     public static Random getRNG() {
         if (rng == null) rng = new Random();
         return rng;

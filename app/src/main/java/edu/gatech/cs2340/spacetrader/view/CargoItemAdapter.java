@@ -20,12 +20,18 @@ import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 
+/**
+ * Displays multiple items in the cargo view, uses android Adapter
+ */
 public class CargoItemAdapter extends RecyclerView.Adapter<CargoItemAdapter.CargoItemViewHolder> {
 
     private GameData gameData;
     private Map<String, Integer> cargo;
     private List<String> sortedCargoKeys;
 
+    /**
+     * Constructor for the class
+     */
     public CargoItemAdapter() {
         super();
         gameData = GameData.getInstance();

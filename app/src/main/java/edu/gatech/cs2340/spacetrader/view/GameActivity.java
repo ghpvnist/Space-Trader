@@ -23,6 +23,9 @@ import edu.gatech.cs2340.spacetrader.model.RandomEvent;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 import edu.gatech.cs2340.spacetrader.viewmodel.GameActivityViewModel;
 
+/**
+ * Activity that launches whenever the game is started, is the main activity for the game
+ */
 public class GameActivity extends AppCompatActivity {
 
     private GameActivityViewModel viewModel;
@@ -81,6 +84,10 @@ public class GameActivity extends AppCompatActivity {
         this.executeRandomEvent(eventNumber);
     }
 
+    /**
+     * Executes a RandomEvent and displays an alert if an event occurs
+     * @param eventNumber the number of the randomly generated event
+     */
     public void executeRandomEvent(int eventNumber) {
         RandomEvent event = new RandomEvent(eventNumber);
         if(event.execute()) {
@@ -104,16 +111,25 @@ public class GameActivity extends AppCompatActivity {
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
     }
 
+    /**
+     * Launches the activity to display the universe view when the proper button is clicked
+     */
     public void openUniverseView() {
         Intent intent = new Intent(this, UniverseViewActivity.class);
         startActivityForResult(intent, 1);
     }
 
+    /**
+     * Launches the activity to display the cargo when the proper button is clicked
+     */
     public void onCargoButtonPressed(View v) {
         Intent intent = new Intent(this, ViewCargoActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches the activity to display the store when the proper button is clicked
+     */
     public void onStoreButtonPressed(View v) {
         Intent intent = new Intent(this, StoreViewActivity.class);
         startActivity(intent);

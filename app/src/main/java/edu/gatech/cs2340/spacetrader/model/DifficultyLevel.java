@@ -1,5 +1,8 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+/**
+ * Enumerates possible difficulty levels for the game
+ */
 public enum DifficultyLevel {
     BEGINNER("BEGINNER"),
     EASY("EASY"),

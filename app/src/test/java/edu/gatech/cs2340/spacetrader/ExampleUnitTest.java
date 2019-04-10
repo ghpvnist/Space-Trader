@@ -10,6 +10,9 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    /**
+     * Example Unit test for the application
+     */
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);

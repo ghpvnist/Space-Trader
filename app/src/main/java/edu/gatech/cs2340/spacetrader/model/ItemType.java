@@ -3,6 +3,9 @@ package edu.gatech.cs2340.spacetrader.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that contains the data for every possible item in the universe
+ */
 public class ItemType {
 
     private String itemId;
@@ -11,6 +14,14 @@ public class ItemType {
     private Map<Resource, Double> resourceValueModifiers;
     private Map<TechLevel, Double> techLevelValueModifiers;
 
+    /**
+     * Constructor for the class
+     * @param name the name of the item
+     * @param itemId the id value for the item
+     * @param basePrice the base price of the item
+     * @param resourceValueModifiers the modifier value to calculate what Resource level the item can appear at
+     * @param techLevelValueModifiers the modifier value to calculate what TechLevel level the item can appear at
+     */
     public ItemType(String name, String itemId, double basePrice, Map<Resource, Double> resourceValueModifiers, Map<TechLevel, Double> techLevelValueModifiers) {
         this.name = name;
         this.itemId = itemId;
@@ -19,10 +30,20 @@ public class ItemType {
         this.techLevelValueModifiers = techLevelValueModifiers;
     }
 
+    /**
+     * Constructor for the class
+     * @param name the name for the item
+     * @param itemId the id value for the item
+     * @param basePrice the base price for the item
+     */
     public ItemType(String name, String itemId, double basePrice) {
         this(name, itemId, basePrice, new HashMap<Resource, Double>(), new HashMap<TechLevel, Double>());
     }
 
+    /**
+     *
+     * @return
+     */
     public String getItemId() { return itemId; }
 
     public String getName() {

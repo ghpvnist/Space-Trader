@@ -18,13 +18,29 @@ import edu.gatech.cs2340.spacetrader.model.GameData;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * Facade that handles the loading and saving of the gameData singleton
+ */
 public class GameDataFacade {
 
+    /**
+     * Async method that saves the gameData object to a file
+     * @param context the context of the current activity
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     public void saveGameData(Context context) throws ExecutionException, InterruptedException {
         new SaveOperation().execute(context).get();
         Log.i("Data", "Finished Waiting");
     }
 
+    /**
+     * Loads the gameData object from the file
+     * @param context the context of the current activity
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void loadGameData(Context context) throws FileNotFoundException, IOException, ClassNotFoundException{
         Log.i("Data", "Called Method");
         FileInputStream fis = context.openFileInput("data.txt");

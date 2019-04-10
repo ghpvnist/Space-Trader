@@ -19,6 +19,9 @@ import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.DifficultyLevel;
 import edu.gatech.cs2340.spacetrader.viewmodel.CreateAccountViewModel;
 
+/**
+ * Activity that launches when the user attempts to create a new game
+ */
 public class CreateAccount extends AppCompatActivity {
     private CreateAccountViewModel viewModel;
     private TextView remainingSkillPointsTextView;
@@ -126,27 +129,46 @@ public class CreateAccount extends AppCompatActivity {
         updateTraderSkillPointsView();
     }
 
+    /**
+     * Updates the view to display the remaining points the user has to assign
+     */
     public void updateRemainingSkillPointsView() {
         remainingSkillPointsTextView.setText(getApplicationContext().getString(
                 R.string.remaining_skill_points, viewModel.getRemainingSkillPoints()));
     }
 
+    /**
+     * Updates the view with the current amount of skill points for engineering
+     */
     public void updateEngineerSkillPointsView() {
         engineerSkillPointsTextView.setText(String.valueOf(viewModel.getEngineerSkillPoints()));
     }
 
+    /**
+     * Updates the view with the current amount of skill points for fighter
+     */
     public void updateFighterSkillPointsView() {
         fighterSkillPointsTextView.setText(String.valueOf(viewModel.getFighterSkillPoints()));
     }
 
+    /**
+     * Updates the view with the current amount of skill points for pilot
+     */
     public void updatePilotSkillPointsView() {
         pilotSkillPointsTextView.setText(String.valueOf(viewModel.getPilotSkillPoints()));
     }
 
+    /**
+     * Updates the view with the current amount of skill points for trader
+     */
     public void updateTraderSkillPointsView() {
         traderSkillPointsTextView.setText(String.valueOf(viewModel.getTraderSkillPoints()));
     }
 
+    /**
+     * Fires when the user wants to create the player, checks if the skill points are properly assigned
+     * @param v the view that displays the skill points
+     */
     public void onClickStartButton(View v) {
         String playerName = usernameEditText.getText().toString().trim();
         if (playerName.length() < 1) {
