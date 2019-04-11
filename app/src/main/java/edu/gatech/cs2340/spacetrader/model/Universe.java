@@ -4,10 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class that represents the universe of the game
+ */
 public class Universe implements Serializable {
 
     private SolarSystem[] solarSystems;
 
+    /**
+     * Constructor for the class
+     */
     public Universe() {
         this.solarSystems = new SolarSystem[10];
 
@@ -177,10 +183,19 @@ public class Universe implements Serializable {
 
     }
 
+    /**
+     * Gets the number of solar systems in the universe
+     * @return the number of solar systems
+     */
     public int getNumSolarSystems() {
         return solarSystems.length;
     }
 
+    /**
+     * Gets the given solar system by index
+     * @param pos the index we are searching for
+     * @return the solar system found
+     */
     public SolarSystem getSolarSystem(int pos) {
         return solarSystems[pos];
     }

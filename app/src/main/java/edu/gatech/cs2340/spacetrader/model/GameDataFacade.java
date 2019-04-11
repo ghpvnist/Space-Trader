@@ -26,8 +26,8 @@ public class GameDataFacade {
     /**
      * Async method that saves the gameData object to a file
      * @param context the context of the current activity
-     * @throws ExecutionException
-     * @throws InterruptedException
+     * @throws ExecutionException throws if the method cannot be executed
+     * @throws InterruptedException throws if the async task is interrupted
      */
     public void saveGameData(Context context) throws ExecutionException, InterruptedException {
         new SaveOperation().execute(context).get();
@@ -37,9 +37,9 @@ public class GameDataFacade {
     /**
      * Loads the gameData object from the file
      * @param context the context of the current activity
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws FileNotFoundException throws if we cannot find the file to load from
+     * @throws IOException throws if there is some problem with the input stream
+     * @throws ClassNotFoundException throws if we cannot cast the file data to the gameData type
      */
     public void loadGameData(Context context) throws FileNotFoundException, IOException, ClassNotFoundException{
         Log.i("Data", "Called Method");

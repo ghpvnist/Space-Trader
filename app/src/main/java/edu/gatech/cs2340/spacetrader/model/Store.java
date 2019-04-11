@@ -3,33 +3,30 @@ package edu.gatech.cs2340.spacetrader.model;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * Class that represents the store
+ */
 public class Store implements Serializable {
 
     private String storeName;
     private TradeOffer[] tradeOffers;
 
+    /**
+     * Constructor for the class
+     * @param storeName the name of the store
+     * @param tradeOffers the possible trades made at the store
+     */
     public Store(String storeName, TradeOffer[] tradeOffers) {
         this.storeName = storeName;
         this.tradeOffers = tradeOffers;
     }
 
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
-    public TradeOffer[] getTradeOffers() {
-        return tradeOffers;
-    }
-
-    public void setTradeOffers(TradeOffer[] tradeOffers) {
-        this.tradeOffers = tradeOffers;
-    }
-
-    //buying from the store
+    /**
+     * Buys the item from the store
+     * @param offerIndex the index of the item being bought
+     * @param quantity the amount of the item being bought
+     * @return the total price of the transaction
+     */
     public int sellOffer(int offerIndex, int quantity) {
         if (offerIndex > tradeOffers.length) {
             throw new RuntimeException("TradeOffer index does not exist");
@@ -46,7 +43,12 @@ public class Store implements Serializable {
 
     }
 
-    //selling to the store
+    /**
+     * Sells the item from the store
+     * @param offerIndex the index of the item being sold
+     * @param quantity the amount of the item being sold
+     * @return the total price of the transaction
+     */
     public int buyOffer(int offerIndex, int quantity) {
         if (offerIndex > tradeOffers.length) {
             throw new RuntimeException("TradeOffer index does not exist");
@@ -59,10 +61,18 @@ public class Store implements Serializable {
 
     }
 
+    /**
+     * Buys fuel from the store
+     * @param quantity the amount of fuel bought
+     * @return the price of the fuel
+     */
     public int buyFuel(int quantity) {
         return 10 * quantity;
     }
 
+    /**
+     * Restocks the store after the player has left
+     */
     public void updateStore() {
         Random rand = new Random();
 
@@ -82,4 +92,39 @@ public class Store implements Serializable {
 
     }
 
+    /**
+     * Gets storeName.
+     *
+     * @return Value of storeName.
+     */
+    public String getStoreName() {
+        return storeName;
+    }
+
+    /**
+     * Sets new tradeOffers.
+     *
+     * @param tradeOffers New value of tradeOffers.
+     */
+    public void setTradeOffers(TradeOffer[] tradeOffers) {
+        this.tradeOffers = tradeOffers;
+    }
+
+    /**
+     * Sets new storeName.
+     *
+     * @param storeName New value of storeName.
+     */
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    /**
+     * Gets tradeOffers.
+     *
+     * @return Value of tradeOffers.
+     */
+    public TradeOffer[] getTradeOffers() {
+        return tradeOffers;
+    }
 }

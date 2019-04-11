@@ -2,6 +2,9 @@ package edu.gatech.cs2340.spacetrader.model;
 
 import java.io.Serializable;
 
+/**
+ * Enumerates possible types of ship
+ */
 public enum ShipType implements Serializable {
     FLEA(100, 100, 100, 100, 100, 100),
     GNAT(100, 100, 100, 100, 100, 100),
@@ -30,27 +33,58 @@ public enum ShipType implements Serializable {
         this.cost = cost;
     }
 
-    public int getAttackPower() {
-        return attackPower;
+
+    /**
+     * Gets cost.
+     *
+     * @return Value of cost.
+     */
+    public int getCost() {
+        return cost;
     }
 
-    public int getCargoSize() {
-        return cargoSize;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
+    /**
+     * Gets maxFuel.
+     *
+     * @return Value of maxFuel.
+     */
     public int getMaxFuel() {
         return maxFuel;
     }
 
-    public int getCost() {
-        return cost;
+    /**
+     * Gets speed.
+     *
+     * @return Value of speed.
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * Gets attackPower.
+     *
+     * @return Value of attackPower.
+     */
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    /**
+     * Gets maxHealth.
+     *
+     * @return Value of maxHealth.
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * Gets cargoSize.
+     *
+     * @return Value of cargoSize.
+     */
+    public int getCargoSize() {
+        return cargoSize;
     }
 }

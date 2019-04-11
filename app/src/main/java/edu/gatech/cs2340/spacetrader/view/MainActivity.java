@@ -16,6 +16,9 @@ import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 import edu.gatech.cs2340.spacetrader.viewmodel.MainActivityViewModel;
 
+/**
+ * Activity that launches when the user opens the app, allows loading or creating a new game
+ */
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel viewModel;
@@ -38,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Fires when the user decides to start a new game or load an old one
+     * @param v the view the user clicks on
+     */
     public void onClick(View v) {
         if (v.getId() == R.id.newAccount) {
             createAccount();
@@ -47,12 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Starts an activity to create a player when the user decides to start a new game
+     */
     public void createAccount() {
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Handles the loading of the previous game
+     */
     public void loadAccount() {
         try {
             this.viewModel.loadGameData(this);

@@ -18,10 +18,16 @@ import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
+/**
+ * Adapter class that adds all solar systems in the universe to the view
+ */
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.UniverseViewHolder> {
 
     private GameData gameData;
 
+    /**
+     * Constructor for the class
+     */
     public UniverseAdapter(){
         this.gameData = GameData.getInstance();
     }
@@ -64,10 +70,18 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         return gameData.getUniverse().getNumSolarSystems();
     }
 
+    /**
+     * Setter for the universe field of the gameData
+     * @param universe the new universe to set to
+     */
     public void setUniverse(Universe universe) {
         this.gameData.setUniverse(universe);
     }
 
+    /**
+     * Setter for the player field of the gameData
+     * @param player the new player to set to
+     */
     public void setPlayer(Player player) {
         this.gameData.setPlayer(player);
     }
@@ -92,6 +106,10 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         }
     }
 
+    /**
+     * Starts the TravelViewActivity when the user attempts to travel to a planet
+     * @param v the view being clicked on
+     */
     public void openTravelView(View v) {
         Intent intent = new Intent(v.getContext(), TravelViewActivity.class);
         Bundle extras = new Bundle();

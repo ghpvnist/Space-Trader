@@ -5,8 +5,18 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
+/**
+ * Class that helps to format the banners on views in the application
+ */
 public final class ViewFormatUtil {
 
+    /**
+     * Creates the string representation of the player's cargo capacity
+     * @param available the player's available cargo space
+     * @param max the player's maximum cargo space
+     * @param addSpace boolean that helps to format the resultant string
+     * @return the string that corresponds to the player's cargo capacity
+     */
     public static SpannableStringBuilder formatCargoCapacity(int available, int max, boolean addSpace) {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();

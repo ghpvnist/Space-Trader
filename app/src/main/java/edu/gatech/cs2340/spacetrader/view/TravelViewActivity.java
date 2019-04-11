@@ -27,6 +27,9 @@ import edu.gatech.cs2340.spacetrader.model.RandomEvent;
 import edu.gatech.cs2340.spacetrader.model.SolarSystem;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
+/**
+ * Activity that launches when the user wants to travel to a planet
+ */
 public class TravelViewActivity extends AppCompatActivity {
 
     private GameData gameData;
@@ -99,7 +102,10 @@ public class TravelViewActivity extends AppCompatActivity {
         });
     }
 
-    public void travel() throws InterruptedException{
+    /**
+     * Travels to the planet and returns to the main application page (GameActivity)
+     */
+    public void travel() {
         int currentFuel = this.gameData.getPlayer().getShip().getCurrentFuel();
         if(currentFuel >= cost) {
             this.gameData.getPlayer().getShip().setCurrentFuel(currentFuel - (cost));
@@ -114,7 +120,11 @@ public class TravelViewActivity extends AppCompatActivity {
         }
     }
 
-    public int generateRandomEvent() throws InterruptedException{
+    /**
+     * Generates the event number for a possible random event
+     * @return the event number
+     */
+    public int generateRandomEvent() {
         Random rand = new Random();
         int x = rand.nextInt(4);
         return x;

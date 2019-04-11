@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+/**
+ * Activity that works as the splash screen for the app
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override

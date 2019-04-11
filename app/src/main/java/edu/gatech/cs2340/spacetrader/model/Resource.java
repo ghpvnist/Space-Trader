@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enumerates possible resource levels
+ */
 public enum Resource implements Serializable {
     NO_SPECIAL_RESOURCES("No Special Resources", 0),
     MINERAL_RICH("Mineral Rich", 1),
@@ -35,14 +38,27 @@ public enum Resource implements Serializable {
         }
     }
 
+    /**
+     * Getter for the name of the resource level
+     * @return the name of the resource level
+     */
     public String getResourceName() {
         return resourceName;
     }
 
+    /**
+     * Getter for the value of the level
+     * @return the value corresponding to the level
+     */
     public int getResourceLevel() {
         return resourceLevel;
     }
 
+    /**
+     * Gets the rank corresponding to the resource level
+     * @param rank the rank we are searching for
+     * @return the Enum value for the corresponding rank
+     */
     public static Resource get(int rank) {
         return lookup.get(rank);
     }

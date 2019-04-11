@@ -14,6 +14,9 @@ import android.widget.TextView;
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.viewmodel.ViewCargoViewModel;
 
+/**
+ * Activity that lists all items in the player's (ship's) cargo
+ */
 public class ViewCargoActivity extends AppCompatActivity {
 
     private ViewCargoViewModel viewModel;

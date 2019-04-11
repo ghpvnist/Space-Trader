@@ -41,43 +41,80 @@ public class ItemType {
     }
 
     /**
-     *
-     * @return
+     * Getter for the item id field
+     * @return id the id field for the object
      */
     public String getItemId() { return itemId; }
 
+    /**
+     * Getter for the name field
+     * @return name the name field for the object
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for the name field
+     * @param name the name field to set to
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the base price field
+     * @return basePrice the base price of the item
+     */
     public double getBasePrice() {
         return basePrice;
     }
 
+    /**
+     * Setter for the base price field
+     * @param basePrice the base price to set to
+     */
     public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
     }
 
+    /**
+     * Getter for the resource value modifiers field
+     * @return the resourceValueModifiers field
+     */
     public Map<Resource, Double> getResourceValueModifiers() {
         return resourceValueModifiers;
     }
 
+    /**
+     * Setter for the resource value modifiers field
+     * @param resourceValueModifiers the resource value modifiers to set to
+     */
     public void setResourceValueModifiers(Map<Resource, Double> resourceValueModifiers) {
         this.resourceValueModifiers = resourceValueModifiers;
     }
 
+    /**
+     * Getter for the tech level value modifiers field
+     * @return the techLevelValueModifiers field
+     */
     public Map<TechLevel, Double> getTechLevelValueModifiers() {
         return techLevelValueModifiers;
     }
 
+    /**
+     * Setter for the tech level value modifiers field
+     * @param techLevelValueModifiers the tech level value modifiers to set to
+     */
     public void setTechLevelValueModifiers(Map<TechLevel, Double> techLevelValueModifiers) {
         this.techLevelValueModifiers = techLevelValueModifiers;
     }
 
+    /**
+     * Contains the logic to calculate the quantity of the item at the given planet
+     * @param planet the planet the item will appear at
+     * @return the adjusted quantity of the item
+     */
     public double getAdjustedQuantity(Planet planet) {
         double techLevelModifier = this.getTechLevelValueModifier(planet.getPlanetTechLevel());
         double resourceModifier = this.getResourceValueModifier(planet.getPlanetResource());
@@ -109,6 +146,11 @@ public class ItemType {
         }
     }
 
+    /**
+     * Contains the logic to calculate the price of the item at the given planet
+     * @param planet the planet the item will appear at
+     * @return the adjusted price of the item
+     */
     public double getAdjustedPrice(Planet planet) {
         TechLevel techLevel = planet.getPlanetTechLevel();
         Resource resource = planet.getPlanetResource();

@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that represents the player's ship
+ */
 public class Ship implements Serializable {
     private ShipType shipType;
     private Map<String, Integer> cargo;
@@ -13,6 +16,9 @@ public class Ship implements Serializable {
     private int currentHealth;
     private int currentCargo;
 
+    /**
+     * Contructor for the ship
+     */
     public Ship() {
         this.shipType = shipType.GNAT;
         this.currentFuel = shipType.GNAT.getMaxFuel();
@@ -28,46 +34,19 @@ public class Ship implements Serializable {
         Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
     }
 
-    public ShipType getShipType() {
-        return shipType;
-    }
-
-    public void setShipType(ShipType shipType) {
-        this.shipType = shipType;
-    }
-
-    public Map<String, Integer> getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Map<String, Integer> cargo) {
-        this.cargo = cargo;
-    }
-
-    public int getCurrentFuel() {
-        return currentFuel;
-    }
-
-    public void setCurrentFuel(int currentFuel) {
-        this.currentFuel = currentFuel;
-    }
-
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
-    public int getCurrentCargo() {
-        return currentCargo;
-    }
-
+    /**
+     * Calculates the remaining cargo space in the ship
+     * @return the remaining cargo space
+     */
     public int getAvailableCargoSpace() {
         return shipType.getCargoSize() - getCurrentCargo();
     }
 
+    /**
+     * Gets the item within the cargo with the given name
+     * @param itemName the name we are searching for
+     * @return the item within the cargo
+     */
     public int getCargo(String itemName) {
         if (cargo.containsKey(itemName)) {
             return cargo.get(itemName);
@@ -75,6 +54,11 @@ public class Ship implements Serializable {
         return 0;
     }
 
+    /**
+     * Adds the given items to the cargo
+     * @param itemName the name of the item being added
+     * @param quantity the quantity of the item being added
+     */
     public void addCargo(String itemName, int quantity) {
 
         if (currentCargo + quantity > this.shipType.getCargoSize()) {
@@ -89,6 +73,11 @@ public class Ship implements Serializable {
         }
     }
 
+    /**
+     * Removes the given items from the cargo
+     * @param itemName the name of the item being removed
+     * @param quantity the quantity of the item being removed
+     */
     public void removeCargo(String itemName, int quantity) {
 
         if (!this.cargo.containsKey(itemName)) {
@@ -108,10 +97,103 @@ public class Ship implements Serializable {
         }
     }
 
+    /**
+     * Gets the selling price of the item
+     * @return the selling price of the item
+     */
     public int getSellPrice() {
 
         return (int) this.shipType.getCost() * currentHealth / this.shipType.getMaxHealth();
 
     }
 
+    /**
+     * Gets shipType.
+     *
+     * @return Value of shipType.
+     */
+    public ShipType getShipType() {
+        return shipType;
+    }
+
+    /**
+     * Gets cargo.
+     *
+     * @return Value of cargo.
+     */
+    public Map<String, Integer> getCargo() {
+        return cargo;
+    }
+
+    /**
+     * Sets new currentHealth.
+     *
+     * @param currentHealth New value of currentHealth.
+     */
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    /**
+     * Sets new currentFuel.
+     *
+     * @param currentFuel New value of currentFuel.
+     */
+    public void setCurrentFuel(int currentFuel) {
+        this.currentFuel = currentFuel;
+    }
+
+    /**
+     * Gets currentHealth.
+     *
+     * @return Value of currentHealth.
+     */
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    /**
+     * Gets currentCargo.
+     *
+     * @return Value of currentCargo.
+     */
+    public int getCurrentCargo() {
+        return currentCargo;
+    }
+
+    /**
+     * Sets new currentCargo.
+     *
+     * @param currentCargo New value of currentCargo.
+     */
+    public void setCurrentCargo(int currentCargo) {
+        this.currentCargo = currentCargo;
+    }
+
+    /**
+     * Sets new cargo.
+     *
+     * @param cargo New value of cargo.
+     */
+    public void setCargo(Map<String, Integer> cargo) {
+        this.cargo = cargo;
+    }
+
+    /**
+     * Gets currentFuel.
+     *
+     * @return Value of currentFuel.
+     */
+    public int getCurrentFuel() {
+        return currentFuel;
+    }
+
+    /**
+     * Sets new shipType.
+     *
+     * @param shipType New value of shipType.
+     */
+    public void setShipType(ShipType shipType) {
+        this.shipType = shipType;
+    }
 }

@@ -43,8 +43,8 @@ public class GameActivityViewModel {
     /**
      * Handles the saving of the gameData using the facade design pattern
      * @param context the context of the current activity
-     * @throws ExecutionException
-     * @throws InterruptedException
+     * @throws ExecutionException throws if the task cannot be executed
+     * @throws InterruptedException throws if async task is interrupted
      */
     public void saveGameData(Context context) throws ExecutionException, InterruptedException {
         this.gameDataFacade.saveGameData(context);
@@ -53,8 +53,8 @@ public class GameActivityViewModel {
     /**
      * Loads the gameData using the facade design pattern
      * @param context the context of the current activity
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException throws if the file we are loading from is not found
+     * @throws ClassNotFoundException throws if we cannot cast file data to given type
      */
     public void loadGameData(Context context) throws IOException, ClassNotFoundException {
         this.gameDataFacade.loadGameData(context);

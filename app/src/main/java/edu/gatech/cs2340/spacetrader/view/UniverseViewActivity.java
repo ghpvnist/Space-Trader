@@ -17,6 +17,9 @@ import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Universe;
 
+/**
+ * Activity that lists all planets in the universe
+ */
 public class UniverseViewActivity extends AppCompatActivity {
 
     private GameData gameData;

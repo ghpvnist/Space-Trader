@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class that represents the planets that can be traveled to
+ */
 public class Planet implements Serializable {
 
     private String name;
@@ -18,10 +21,21 @@ public class Planet implements Serializable {
     private int y;
     //private Shipyard shipyard;
 
+    /**
+     * Constructor for the class
+     */
     public Planet() {
         this.name = "";
     }
 
+    /**
+     * Constructor for the class
+     * @param name the name of the planet
+     * @param x the x location of the planet
+     * @param y the y location of the planet
+     * @param resource the resource level of the planet
+     * @param techLevel the tech level of the planet
+     */
     public Planet(String name, int x, int y, Resource resource, TechLevel techLevel) {
         this.name = name;
         this.x = x;
@@ -77,40 +91,60 @@ public class Planet implements Serializable {
         return 0.8 + (0.4 * ItemManager.getRNG().nextDouble());
     }
 
+    /**
+     * Getter for the store field
+     * @return the store field
+     */
     public Store getStore() {
         return store;
     }
 
+    /**
+     * Getter for the name field
+     * @return the name field
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for the name field
+     * @param name the name to set the field to
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the x field
+     * @return the x field
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Getter for the y field
+     * @return the y field
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * Getter for the techLevel field
+     * @return the techLevel field
+     */
     public TechLevel getPlanetTechLevel() {
         return planetTechLevel;
     }
 
+    /**
+     * Getter for the resourceLevel field
+     * @return the resourceLevel field
+     */
     public Resource getPlanetResource() {
         return planetResource;
-    }
-
-    public boolean hasStore() {
-        return true;
-    }
-
-    public boolean hasShipyard() {
-        return true;
     }
 
 }

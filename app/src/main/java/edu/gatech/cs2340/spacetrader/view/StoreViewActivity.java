@@ -10,6 +10,9 @@ import android.widget.TextView;
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.viewmodel.StoreViewModel;
 
+/**
+ * Activity that displays the items sold and bought at the store
+ */
 public class StoreViewActivity extends AppCompatActivity {
 
     private StoreViewModel viewModel;
@@ -39,12 +42,18 @@ public class StoreViewActivity extends AppCompatActivity {
         updateCredits();
     }
 
+    /**
+     * Updates the player's cargo after items are sold or bought
+     */
     public void updateCargoIndicator() {
         this.cargoIndicatorView.setText(ViewFormatUtil.formatCargoCapacity(
                 this.viewModel.getAvailableCargo(), this.viewModel.getMaxCargo(), true),
                 TextView.BufferType.SPANNABLE);
     }
 
+    /**
+     * Updates the player's amount of credits after items are sold or bought
+     */
     public void updateCredits() {
         this.creditsIndicatorView.setText("$" + String.valueOf(this.viewModel.getCredits()));
     }

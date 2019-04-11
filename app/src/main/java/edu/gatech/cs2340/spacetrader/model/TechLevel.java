@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enumerates possible tech levels
+ */
 public enum TechLevel implements Serializable {
     PRE_AGRICULTURE("Pre-Agriculture", 0),
     AGRICULTURE("Agriculture", 1),
@@ -30,14 +33,27 @@ public enum TechLevel implements Serializable {
         }
     }
 
+    /**
+     * Getter for the tech level
+     * @return the techLevel
+     */
     public String getTechLevel() {
         return techLevel;
     }
 
+    /**
+     * Getter for the corresponding rank value
+     * @return the rank value
+     */
     public int getTechRank() {
         return techRank;
     }
 
+    /**
+     * Gets the tech level given the rank value
+     * @param rank the rank value we are searching for
+     * @return the tech level found
+     */
     public static TechLevel get(int rank) {
         return lookup.get(rank);
     }

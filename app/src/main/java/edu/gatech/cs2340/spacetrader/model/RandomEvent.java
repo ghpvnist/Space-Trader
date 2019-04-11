@@ -2,11 +2,18 @@ package edu.gatech.cs2340.spacetrader.model;
 
 import java.util.Random;
 
+/**
+ * Class that represents random events that can happen
+ */
 public class RandomEvent {
     private int eventNumber;
     private String message;
     private int creditsGained;
 
+    /**
+     * Constructor for the class
+     * @param eventNumber the id for the randomly generated event
+     */
     public RandomEvent(int eventNumber){
         String[] possibleEvents = {"Pirates attacked the ship!",
         "You found gold!", "You hit an asteroid field!", "You collected a bounty!"};
@@ -34,10 +41,18 @@ public class RandomEvent {
         }
     }
 
+    /**
+     * Getter for the message field
+     * @return the message field
+     */
     public String getMessage(){
         return this.message;
     }
 
+    /**
+     * Executes the random event by editing the player's credits
+     * @return whether or not a random event happened
+     */
     public boolean execute(){
         boolean occurred = false;
         if(creditsGained != 0){
