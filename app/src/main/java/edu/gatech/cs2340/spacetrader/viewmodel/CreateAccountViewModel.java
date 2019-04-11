@@ -73,6 +73,7 @@ public class CreateAccountViewModel {
     /**
      * Changes engineer skill points by {points}, if possible.
      * Otherwise, doesn't change the values at all.
+     * @param points the number of engineer skill points to add.
      */
     public void changeEngineerSkillPoints(int points) {
         if ((points > 0 && remainingSkillPoints - points >= 0) ||
@@ -85,6 +86,7 @@ public class CreateAccountViewModel {
     /**
      * Changes fighter skill points by {points}, if possible.
      * Otherwise, doesn't change the values at all.
+     * @param points the number of fighter skill points to add.
      */
     public void changeFighterSkillPoints(int points) {
         if ((points > 0 && remainingSkillPoints - points >= 0) ||
@@ -97,6 +99,7 @@ public class CreateAccountViewModel {
     /**
      * Changes pilot skill points by {points}, if possible.
      * Otherwise, doesn't change the values at all.
+     * @param points the number of pilot skill points to add.
      */
     public void changePilotSkillPoints(int points) {
         if ((points > 0 && remainingSkillPoints - points >= 0) ||
@@ -109,6 +112,7 @@ public class CreateAccountViewModel {
     /**
      * Changes trader skill points by {points}, if possible.
      * Otherwise, doesn't change the values at all.
+     * @param points the number of trader skill points to add.
      */
     public void changeTraderSkillPoints(int points) {
         if ((points > 0 && remainingSkillPoints - points >= 0) ||

@@ -121,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Launches the activity to display the cargo when the proper button is clicked
+     * @param v the view of activity
      */
     public void onCargoButtonPressed(View v) {
         Intent intent = new Intent(this, ViewCargoActivity.class);
@@ -129,6 +130,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Launches the activity to display the store when the proper button is clicked
+     * @param v the view of activity
      */
     public void onStoreButtonPressed(View v) {
         Intent intent = new Intent(this, StoreViewActivity.class);

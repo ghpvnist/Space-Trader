@@ -70,7 +70,7 @@ public class ItemManager {
 
     /**
      * Returns a Random object to add RNG into prices for the game
-     * @return
+     * @return rng the random object generated
      */
     public static Random getRNG() {
         if (rng == null) rng = new Random();
