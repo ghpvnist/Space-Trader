@@ -165,8 +165,6 @@ public class Universe implements Serializable {
             y[i] = randomGenerator.nextInt(COORDINATE_MAX_BOUND) - 1000;
         }
 
-        //Todo: deal with the case where planets overlap
-
         int[] tech = new int[10];
 
         for (int i = 0; i < 10; i++) {
