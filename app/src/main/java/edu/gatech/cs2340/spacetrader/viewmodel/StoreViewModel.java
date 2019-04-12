@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
 import edu.gatech.cs2340.spacetrader.model.GameData;
-import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Store;
 import edu.gatech.cs2340.spacetrader.model.TradeOffer;
 
@@ -18,7 +17,7 @@ public class StoreViewModel {
      * @param store the store that we are accessing
      * @param gameData the gameData of the current game
      */
-    public StoreViewModel(Store store, GameData gameData) {
+    private StoreViewModel(Store store, GameData gameData) {
         this.store = store;
         this.gameData = gameData;
     }
@@ -27,7 +26,7 @@ public class StoreViewModel {
      * Constructor for the class
      * @param store the store that we are accessing
      */
-    public StoreViewModel(Store store) {
+    private StoreViewModel(Store store) {
         this(store, GameData.getInstance());
     }
 
@@ -84,8 +83,9 @@ public class StoreViewModel {
      * @return the quantity of the item in the inventory
      */
     public int getOwnedItem(String itemName) {
-        if (this.gameData.getPlayer().getShip().getCargo().containsKey(itemName))
+        if (this.gameData.getPlayer().getShip().getCargo().containsKey(itemName)) {
             return this.gameData.getPlayer().getShip().getCargo().get(itemName);
+        }
         return 0;
     }
 
@@ -95,9 +95,9 @@ public class StoreViewModel {
      * @param quantity the quantity bought
      */
     public void buyItem(TradeOffer offer, int quantity) {
-        if (offer.getItemQuantity() >= quantity &&
-                this.gameData.getPlayer().getShip().getAvailableCargoSpace() >= quantity &&
-                this.gameData.getPlayer().getCredits() > (quantity * offer.getItemPrice())) {
+        if ((offer.getItemQuantity() >= quantity) &&
+                (this.gameData.getPlayer().getShip().getAvailableCargoSpace() >= quantity) &&
+                (this.gameData.getPlayer().getCredits() > (quantity * offer.getItemPrice()))) {
             this.gameData.getPlayer().getShip().addCargo(offer.getItemName(), quantity);
             offer.setItemQuantity(offer.getItemQuantity() - quantity);
             this.gameData.getPlayer().addCredits(-quantity * offer.getItemPrice());

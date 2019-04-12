@@ -53,6 +53,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button engineerPlusButton = findViewById(R.id.engineer_plus_button);
         engineerPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeEngineerSkillPoints(1);
                 updateRemainingSkillPointsView();
@@ -62,6 +63,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button fighterPlusButton = findViewById(R.id.fighter_plus_button);
         fighterPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeFighterSkillPoints(1);
                 updateRemainingSkillPointsView();
@@ -71,6 +73,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button pilotPlusButton = findViewById(R.id.pilot_plus_button);
         pilotPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changePilotSkillPoints(1);
                 updateRemainingSkillPointsView();
@@ -80,6 +83,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button traderPlusButton = findViewById(R.id.trader_plus_button);
         traderPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeTraderSkillPoints(1);
                 updateRemainingSkillPointsView();
@@ -89,6 +93,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button engineerMinusButton = findViewById(R.id.engineer_minus_button);
         engineerMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeEngineerSkillPoints(-1);
                 updateRemainingSkillPointsView();
@@ -98,6 +103,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button fighterMinusButton = findViewById(R.id.fighter_minus_button);
         fighterMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeFighterSkillPoints(-1);
                 updateRemainingSkillPointsView();
@@ -107,6 +113,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button pilotMinusButton = findViewById(R.id.pilot_minus_button);
         pilotMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changePilotSkillPoints(-1);
                 updateRemainingSkillPointsView();
@@ -116,6 +123,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Button traderMinusButton = findViewById(R.id.trader_minus_button);
         traderMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.changeTraderSkillPoints(-1);
                 updateRemainingSkillPointsView();
@@ -133,7 +141,7 @@ public class CreateAccount extends AppCompatActivity {
     /**
      * Updates the view to display the remaining points the user has to assign
      */
-    public void updateRemainingSkillPointsView() {
+    private void updateRemainingSkillPointsView() {
         remainingSkillPointsTextView.setText(getApplicationContext().getString(
                 R.string.remaining_skill_points, viewModel.getRemainingSkillPoints()));
     }
@@ -141,28 +149,28 @@ public class CreateAccount extends AppCompatActivity {
     /**
      * Updates the view with the current amount of skill points for engineering
      */
-    public void updateEngineerSkillPointsView() {
+    private void updateEngineerSkillPointsView() {
         engineerSkillPointsTextView.setText(String.valueOf(viewModel.getEngineerSkillPoints()));
     }
 
     /**
      * Updates the view with the current amount of skill points for fighter
      */
-    public void updateFighterSkillPointsView() {
+    private void updateFighterSkillPointsView() {
         fighterSkillPointsTextView.setText(String.valueOf(viewModel.getFighterSkillPoints()));
     }
 
     /**
      * Updates the view with the current amount of skill points for pilot
      */
-    public void updatePilotSkillPointsView() {
+    private void updatePilotSkillPointsView() {
         pilotSkillPointsTextView.setText(String.valueOf(viewModel.getPilotSkillPoints()));
     }
 
     /**
      * Updates the view with the current amount of skill points for trader
      */
-    public void updateTraderSkillPointsView() {
+    private void updateTraderSkillPointsView() {
         traderSkillPointsTextView.setText(String.valueOf(viewModel.getTraderSkillPoints()));
     }
 
@@ -197,7 +205,7 @@ public class CreateAccount extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (usernameEditText.getText().toString().length() > 0 || viewModel.getRemainingSkillPoints() < viewModel.INITIAL_SKILL_POINTS) {
+        if (!usernameEditText.getText().toString().isEmpty() || (viewModel.getRemainingSkillPoints() < CreateAccountViewModel.INITIAL_SKILL_POINTS)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirm Exit?");
             builder.setMessage("Your progress will not be saved.");

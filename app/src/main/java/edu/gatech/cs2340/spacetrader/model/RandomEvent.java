@@ -6,8 +6,7 @@ import java.util.Random;
  * Class that represents random events that can happen
  */
 public class RandomEvent {
-    private int eventNumber;
-    private String message;
+    private final String message;
     private int creditsGained;
 
     private static final double RANDOM_CREDITS_LOWER = 0.05;
@@ -21,17 +20,16 @@ public class RandomEvent {
         String[] possibleEvents = {"Pirates attacked the ship!",
         "You found gold!", "You hit an asteroid field!", "You collected a bounty!"};
 
-        this.eventNumber = eventNumber;
         this.creditsGained = 0;
 
-        if(eventNumber < possibleEvents.length && eventNumber >= 0){
+        if((eventNumber < possibleEvents.length) && (eventNumber >= 0)){
             GameData gameData = GameData.getInstance();
             StringBuilder sb = new StringBuilder(possibleEvents[eventNumber]);
             Random rand = new Random();
-            this.creditsGained = (int)((RANDOM_CREDITS_LOWER + (RANDOM_CREDITS_UPPER - RANDOM_CREDITS_LOWER) * rand.nextFloat())
+            this.creditsGained = (int) ((RANDOM_CREDITS_LOWER + ((RANDOM_CREDITS_UPPER - RANDOM_CREDITS_LOWER) * rand.nextFloat()))
                     * gameData.getPlayer().getCredits());
 
-            if(eventNumber % 2 == 0){
+            if((eventNumber % 2) == 0){
                 sb.append(" You lost ").append(this.creditsGained).append(" Credits");
                 this.creditsGained *= -1;
             } else {

@@ -1,13 +1,10 @@
 package edu.gatech.cs2340.spacetrader.view;
 
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,14 +16,12 @@ import edu.gatech.cs2340.spacetrader.viewmodel.ViewCargoViewModel;
  */
 public class ViewCargoActivity extends AppCompatActivity {
 
-    private ViewCargoViewModel viewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cargo);
 
-        viewModel = new ViewCargoViewModel();
+        ViewCargoViewModel viewModel = new ViewCargoViewModel();
 
         TextView cargoSpaceIndicator = findViewById(R.id.cargo_space_indicator);
 

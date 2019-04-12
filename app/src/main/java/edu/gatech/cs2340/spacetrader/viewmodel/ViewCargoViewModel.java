@@ -1,14 +1,13 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
 import edu.gatech.cs2340.spacetrader.model.GameData;
-import edu.gatech.cs2340.spacetrader.model.Player;
 
 /**
  * ViewModel for the CargoViewActivity class
  */
 public class ViewCargoViewModel {
 
-    private GameData gameData;
+    private final GameData gameData;
 
     /**
      * Constructor for the class

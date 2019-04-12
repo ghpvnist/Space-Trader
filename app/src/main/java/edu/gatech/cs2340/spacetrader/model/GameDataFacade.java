@@ -2,15 +2,14 @@ package edu.gatech.cs2340.spacetrader.model;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.util.Log;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.ExecutionException;
 
@@ -62,13 +61,13 @@ public class GameDataFacade {
             Log.i("Data", "Called Method");
             try {
                 FileOutputStream fos = contexts[0].openFileOutput("data.txt", MODE_PRIVATE);
-                ObjectOutputStream os = new ObjectOutputStream(fos);
+                ObjectOutput os = new ObjectOutputStream(fos);
                 Log.i("Data", "Opened Streams");
                 os.writeObject(gameData);
                 Log.i("Data", "Saved to File");
                 os.close();
                 fos.close();
-            } catch(Exception e) {
+            } catch(Exception ignored) {
 
             }
             return "Completed";

@@ -18,7 +18,7 @@ public class Store implements Serializable {
      */
     public Store(String storeName, TradeOffer[] tradeOffers) {
         this.storeName = storeName;
-        this.tradeOffers = tradeOffers;
+        this.tradeOffers = tradeOffers.clone();
     }
 
     /**
@@ -70,7 +70,7 @@ public class Store implements Serializable {
         return 10 * quantity;
     }
 
-    public final static double STORE_UPDATE_MULTIPLIER = 2.27;
+    private static final double STORE_UPDATE_MULTIPLIER = 2.27;
 
     /**
      * Restocks the store after the player has left
@@ -81,7 +81,7 @@ public class Store implements Serializable {
         for (TradeOffer tradeOffer : tradeOffers) {
 
             //expected value of about 1
-            double x = 4 * rand.nextDouble() - 2;
+            double x = (4 * rand.nextDouble()) - 2;
             double multiplier = STORE_UPDATE_MULTIPLIER * Math.pow(Math.E, -1 * Math.pow(x, 2));
 
             if (tradeOffer.getItemQuantity() > tradeOffer.getDefaultQuantity()) {
@@ -109,7 +109,7 @@ public class Store implements Serializable {
      * @param tradeOffers New value of tradeOffers.
      */
     public void setTradeOffers(TradeOffer[] tradeOffers) {
-        this.tradeOffers = tradeOffers;
+        this.tradeOffers = tradeOffers.clone();
     }
 
     /**
@@ -127,6 +127,6 @@ public class Store implements Serializable {
      * @return Value of tradeOffers.
      */
     public TradeOffer[] getTradeOffers() {
-        return tradeOffers;
+        return tradeOffers.clone();
     }
 }

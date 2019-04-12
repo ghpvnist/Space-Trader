@@ -2,7 +2,6 @@ package edu.gatech.cs2340.spacetrader.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ class StoreOfferAdapter extends RecyclerView.Adapter<StoreOfferAdapter.StoreOffe
     private final StoreViewModel viewModel;
     private final Store store;
 
-    public StoreOfferAdapter(Store store, StoreViewModel viewModel, StoreViewActivity view) {
+    private StoreOfferAdapter(Store store, StoreViewModel viewModel, StoreViewActivity view) {
         super();
         this.store = store;
         this.viewModel = viewModel;
@@ -49,6 +48,7 @@ class StoreOfferAdapter extends RecyclerView.Adapter<StoreOfferAdapter.StoreOffe
         updateOfferHolder(storeOfferHolder, offer);
 
         storeOfferHolder.buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.buyItem(offer, 1);
                 view.updateCargoIndicator();
@@ -58,6 +58,7 @@ class StoreOfferAdapter extends RecyclerView.Adapter<StoreOfferAdapter.StoreOffe
         });
 
         storeOfferHolder.sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 viewModel.sellItem(offer, 1);
                 view.updateCargoIndicator();
@@ -95,7 +96,7 @@ class StoreOfferAdapter extends RecyclerView.Adapter<StoreOfferAdapter.StoreOffe
         private final Button buyButton;
         private final Button sellButton;
 
-        public StoreOfferViewHolder(View itemView) {
+        StoreOfferViewHolder(View itemView) {
             super(itemView);
             this.itemImage = itemView.findViewById(R.id.store_item_image);
             this.itemName = itemView.findViewById(R.id.store_item_name);

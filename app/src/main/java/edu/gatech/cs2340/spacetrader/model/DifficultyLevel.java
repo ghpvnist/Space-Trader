@@ -10,9 +10,9 @@ public enum DifficultyLevel {
     HARD("HARD"),
     IMPOSSIBLE("IMPOSSIBLE");
 
-    private String difficulty;
+    private final String difficulty;
 
-    private DifficultyLevel(String difficulty) {
+    DifficultyLevel(String difficulty) {
         this.difficulty = difficulty;
     }
 

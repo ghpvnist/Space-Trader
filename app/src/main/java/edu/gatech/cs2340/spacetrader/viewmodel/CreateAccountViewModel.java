@@ -18,7 +18,7 @@ public class CreateAccountViewModel {
     private int pilotSkillPoints;
     private int traderSkillPoints;
 
-    private static final int INITIAL_SKILL_POINTS = 16;
+    public static final int INITIAL_SKILL_POINTS = 16;
 
     /**
      * Default constructor
@@ -78,8 +78,8 @@ public class CreateAccountViewModel {
      * @param points the number of engineer skill points to add.
      */
     public void changeEngineerSkillPoints(int points) {
-        if ((points > 0 && remainingSkillPoints - points >= 0) ||
-                (points < 0 && engineerSkillPoints + points >= 0)) {
+        if (((points > 0) && ((remainingSkillPoints - points) >= 0)) ||
+                ((points < 0) && ((engineerSkillPoints + points) >= 0))) {
             remainingSkillPoints -= points;
             engineerSkillPoints += points;
         }
@@ -91,8 +91,8 @@ public class CreateAccountViewModel {
      * @param points the number of fighter skill points to add.
      */
     public void changeFighterSkillPoints(int points) {
-        if ((points > 0 && remainingSkillPoints - points >= 0) ||
-                (points < 0 && fighterSkillPoints + points >= 0)) {
+        if (((points > 0) && ((remainingSkillPoints - points) >= 0)) ||
+                ((points < 0) && ((fighterSkillPoints + points) >= 0))) {
             remainingSkillPoints -= points;
             fighterSkillPoints += points;
         }
@@ -104,8 +104,8 @@ public class CreateAccountViewModel {
      * @param points the number of pilot skill points to add.
      */
     public void changePilotSkillPoints(int points) {
-        if ((points > 0 && remainingSkillPoints - points >= 0) ||
-                (points < 0 && pilotSkillPoints + points >= 0)) {
+        if (((points > 0) && ((remainingSkillPoints - points) >= 0)) ||
+                ((points < 0) && ((pilotSkillPoints + points) >= 0))) {
             remainingSkillPoints -= points;
             pilotSkillPoints += points;
         }
@@ -117,8 +117,8 @@ public class CreateAccountViewModel {
      * @param points the number of trader skill points to add.
      */
     public void changeTraderSkillPoints(int points) {
-        if ((points > 0 && remainingSkillPoints - points >= 0) ||
-                (points < 0 && traderSkillPoints + points >= 0)) {
+        if (((points > 0) && ((remainingSkillPoints - points) >= 0)) ||
+                ((points < 0) && ((traderSkillPoints + points) >= 0))) {
             remainingSkillPoints -= points;
             traderSkillPoints += points;
         }

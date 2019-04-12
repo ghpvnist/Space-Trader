@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,8 @@ import edu.gatech.cs2340.spacetrader.model.Universe;
  */
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.UniverseViewHolder> {
 
-    public static final int ICON_OFFSET = 10000;
-    private GameData gameData;
+    private static final int ICON_OFFSET = 10000;
+    private final GameData gameData;
 
     /**
      * Constructor for the class
@@ -67,7 +66,9 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
 
     @Override
     public int getItemCount() {
-        if (gameData.getUniverse() == null) return 0;
+        if (gameData.getUniverse() == null) {
+            return 0;
+        }
         return gameData.getUniverse().getNumSolarSystems();
     }
 
@@ -111,7 +112,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
      * Starts the TravelViewActivity when the user attempts to travel to a planet
      * @param v the view being clicked on
      */
-    public void openTravelView(View v) {
+    private void openTravelView(View v) {
         Intent intent = new Intent(v.getContext(), TravelViewActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("system", (SolarSystem) v.findViewById(R.id.systemName).getTag());
@@ -121,12 +122,12 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
     }
 
     class UniverseViewHolder extends RecyclerView.ViewHolder {
-        private ImageView planetImage;
-        private TextView systemName;
-        private TextView systemLocation;
-        private RelativeLayout solarSystemLayout;
+        private final ImageView planetImage;
+        private final TextView systemName;
+        private final TextView systemLocation;
+        private final RelativeLayout solarSystemLayout;
 
-        public UniverseViewHolder(@NonNull View itemView) {
+        UniverseViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.planetImage = itemView.findViewById(R.id.planetImage);

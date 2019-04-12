@@ -12,7 +12,7 @@ import edu.gatech.cs2340.spacetrader.model.GameDataFacade;
  */
 public class MainActivityViewModel {
 
-    private GameDataFacade gameDataFacade;
+    private final GameDataFacade gameDataFacade;
 
     /**
      * Constructor for the class

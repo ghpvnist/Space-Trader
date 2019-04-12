@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.spacetrader.view;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,23 +16,21 @@ import java.util.Map;
 
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.GameData;
-import edu.gatech.cs2340.spacetrader.model.Player;
 
 /**
  * Displays multiple items in the cargo view, uses android Adapter
  */
 public class CargoItemAdapter extends RecyclerView.Adapter<CargoItemAdapter.CargoItemViewHolder> {
 
-    private GameData gameData;
-    private Map<String, Integer> cargo;
-    private List<String> sortedCargoKeys;
+    private final Map<String, Integer> cargo;
+    private final List<String> sortedCargoKeys;
 
     /**
      * Constructor for the class
      */
     public CargoItemAdapter() {
         super();
-        gameData = GameData.getInstance();
+        GameData gameData = GameData.getInstance();
         cargo = gameData.getPlayer().getShip().getCargo();
         sortedCargoKeys = new ArrayList<>(cargo.keySet());
         Log.d("APP", "We have " + sortedCargoKeys.size() + " items!");
@@ -67,7 +63,7 @@ public class CargoItemAdapter extends RecyclerView.Adapter<CargoItemAdapter.Carg
         private final TextView cargoItemName;
         private final TextView cargoItemQuantity;
 
-        public CargoItemViewHolder(View itemView) {
+        CargoItemViewHolder(View itemView) {
             super(itemView);
             this.cargoImage = itemView.findViewById(R.id.cargo_img);
             this.cargoItemName = itemView.findViewById(R.id.cargo_item_name);

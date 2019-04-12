@@ -1,15 +1,13 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import java.io.Serializable;
-
 /**
  * Singleton class that contains all of the data for the game being played
  */
-public class GameData {
+public final class GameData {
     private Player player;
     private Universe universe;
 
-    private static GameData INSTANCE = null;
+    private static GameData INSTANCE;
 
     private GameData(Player player, Universe universe) {
         this.player = player;
@@ -21,7 +19,9 @@ public class GameData {
      * @return INSTANCE the instance of the singleton class
      */
     public static GameData getInstance() {
-        if (INSTANCE == null) throw new RuntimeException("GameData not yet instantiated!");
+        if (INSTANCE == null) {
+            throw new RuntimeException("GameData not yet instantiated!");
+        }
         return INSTANCE;
     }
 
@@ -32,7 +32,9 @@ public class GameData {
      * @return the INSTANCE of the the newly instantiated singleton
      */
     public static GameData instantiateGameData(Player player, Universe universe) {
-        if (INSTANCE != null) throw new RuntimeException("GameData already instantiated!");
+        if (INSTANCE != null) {
+            throw new RuntimeException("GameData already instantiated!");
+        }
         INSTANCE = new GameData(player, universe);
         return INSTANCE;
     }

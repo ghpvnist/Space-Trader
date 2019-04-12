@@ -3,6 +3,7 @@ package edu.gatech.cs2340.spacetrader.model;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,17 +22,17 @@ public class Ship implements Serializable {
      * Contructor for the ship
      */
     public Ship() {
-        this.shipType = shipType.GNAT;
-        this.currentFuel = shipType.GNAT.getMaxFuel();
-        this.currentHealth = shipType.GNAT.getMaxHealth();
-        this.cargo = new HashMap<String, Integer>();
+        this.shipType = ShipType.GNAT;
+        this.currentFuel = ShipType.GNAT.getMaxFuel();
+        this.currentHealth = ShipType.GNAT.getMaxHealth();
+        this.cargo = new HashMap<>();
         this.currentCargo = 0;
 
-        this.addCargo("Wood Log", 10);
-        this.addCargo("Apple", 10);
-        this.addCargo("Machine Parts", 10);
+        cargo.put("Wood Log", 10);
+        cargo.put("Apple", 10);
+        cargo.put("Machine Parts", 10);
         Log.d("SHIP", "Ship constructor called!");
-        Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
+        //Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
     }
 
     /**
@@ -61,7 +62,7 @@ public class Ship implements Serializable {
      */
     public void addCargo(String itemName, int quantity) {
 
-        if (currentCargo + quantity > this.shipType.getCargoSize()) {
+        if ((currentCargo + quantity) > this.shipType.getCargoSize()) {
             throw new RuntimeException("Not enough room for adding cargo");
         }
 
@@ -103,7 +104,7 @@ public class Ship implements Serializable {
      */
     public int getSellPrice() {
 
-        return (int) this.shipType.getCost() * currentHealth / this.shipType.getMaxHealth();
+        return (this.shipType.getCost() * currentHealth) / this.shipType.getMaxHealth();
 
     }
 
@@ -122,7 +123,7 @@ public class Ship implements Serializable {
      * @return Value of cargo.
      */
     public Map<String, Integer> getCargo() {
-        return cargo;
+        return Collections.unmodifiableMap(cargo);
     }
 
     /**

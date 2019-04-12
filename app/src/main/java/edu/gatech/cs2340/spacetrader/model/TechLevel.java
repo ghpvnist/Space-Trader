@@ -1,13 +1,12 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Enumerates possible tech levels
  */
-public enum TechLevel implements Serializable {
+public enum TechLevel {
     PRE_AGRICULTURE("Pre-Agriculture", 0),
     AGRICULTURE("Agriculture", 1),
     MEDIEVAL("Medieval", 2),
@@ -17,15 +16,15 @@ public enum TechLevel implements Serializable {
     POST_INDUSTRIAL("Post-Industrial", 6),
     HI_TECH("Hi-Tech", 7);
 
-    private String techLevel;
-    private int techRank;
+    private final String techLevel;
+    private final int techRank;
 
     TechLevel(String techLevel, int techRank) {
         this.techLevel = techLevel;
         this.techRank = techRank;
     }
 
-    private static final Map<Integer, TechLevel> lookup = new HashMap<Integer, TechLevel>();
+    private static final Map<Integer, TechLevel> lookup = new HashMap<>();
 
     static {
         for (TechLevel d : TechLevel.values()) {
@@ -45,7 +44,7 @@ public enum TechLevel implements Serializable {
      * Getter for the corresponding rank value
      * @return the rank value
      */
-    public int getTechRank() {
+    private int getTechRank() {
         return techRank;
     }
 

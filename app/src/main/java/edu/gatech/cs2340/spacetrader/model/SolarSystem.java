@@ -117,7 +117,7 @@ public class SolarSystem implements Serializable {
      * @return Value of planets.
      */
     public Planet[] getPlanets() {
-        return planets;
+        return planets.clone();
     }
 
     /**
@@ -126,7 +126,7 @@ public class SolarSystem implements Serializable {
      * @param planets New value of planets.
      */
     public void setPlanets(Planet[] planets) {
-        this.planets = planets;
+        this.planets = planets.clone();
     }
 
     /**

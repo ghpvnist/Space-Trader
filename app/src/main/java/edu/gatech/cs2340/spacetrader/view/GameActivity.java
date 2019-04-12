@@ -10,17 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.util.Random;
-import java.util.concurrent.ExecutionException;
-
 import edu.gatech.cs2340.spacetrader.R;
 import edu.gatech.cs2340.spacetrader.model.GameData;
-import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.RandomEvent;
-import edu.gatech.cs2340.spacetrader.model.Universe;
 import edu.gatech.cs2340.spacetrader.viewmodel.GameActivityViewModel;
 
 /**
@@ -29,9 +21,6 @@ import edu.gatech.cs2340.spacetrader.viewmodel.GameActivityViewModel;
 public class GameActivity extends AppCompatActivity {
 
     private GameActivityViewModel viewModel;
-    private Button viewUniverseButton;
-    private Button shopButton;
-    private Button shipButton;
     private TextView currentPlanetText;
     private GameData gameData;
 
@@ -56,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
                     + "\nTrader: " + this.gameData.getPlayer().getTraderSkillPoints());
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                     new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
@@ -64,17 +54,13 @@ public class GameActivity extends AppCompatActivity {
             Log.v("GAME", "CREATED!");
         }
 
-        viewUniverseButton = findViewById(R.id.viewUniverseButton);
+        Button viewUniverseButton = findViewById(R.id.viewUniverseButton);
         viewUniverseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GameActivity.this.openUniverseView();
             }
         });
-
-        shopButton = findViewById(R.id.shopButton);
-
-        shipButton = findViewById(R.id.shipButton);
 
         currentPlanetText = findViewById(R.id.currentPlanetText);
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
@@ -88,7 +74,7 @@ public class GameActivity extends AppCompatActivity {
      * Executes a RandomEvent and displays an alert if an event occurs
      * @param eventNumber the number of the randomly generated event
      */
-    public void executeRandomEvent(int eventNumber) {
+    private void executeRandomEvent(int eventNumber) {
         RandomEvent event = new RandomEvent(eventNumber);
         if(event.execute()) {
             AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
@@ -96,6 +82,7 @@ public class GameActivity extends AppCompatActivity {
             alertDialog.setMessage(event.getMessage());
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                     new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
@@ -114,7 +101,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Launches the activity to display the universe view when the proper button is clicked
      */
-    public void openUniverseView() {
+    private void openUniverseView() {
         Intent intent = new Intent(this, UniverseViewActivity.class);
         startActivityForResult(intent, 1);
     }

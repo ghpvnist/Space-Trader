@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             GameData.instantiateGameData(player, new Universe());
-        } catch(Exception e) {
+        } catch(Exception ignored) {
 
         }
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Starts an activity to create a player when the user decides to start a new game
      */
-    public void createAccount() {
+    private void createAccount() {
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
         finish();
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Handles the loading of the previous game
      */
-    public void loadAccount() {
+    private void loadAccount() {
         try {
             this.viewModel.loadGameData(this);
             Intent intent = new Intent(this, GameActivity.class);

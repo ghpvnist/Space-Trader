@@ -9,9 +9,9 @@ import java.util.Random;
  */
 public class Universe implements Serializable {
 
-    public static final int COORDINATE_MAX_BOUND = 2001;
-    public static final int RESOURCE_MAX_NUM = 13;
-    private SolarSystem[] solarSystems;
+    private static final int COORDINATE_MAX_BOUND = 2001;
+    private static final int RESOURCE_MAX_NUM = 13;
+    private final SolarSystem[] solarSystems;
 
     /**
      * Constructor for the class
@@ -143,7 +143,7 @@ public class Universe implements Serializable {
                         "Zuul"            // From the first Ghostbusters movie
                 };
 
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
         Random randomGenerator = new Random();
         while (numbers.size() < 10) {
 

@@ -14,7 +14,7 @@ import edu.gatech.cs2340.spacetrader.model.GameDataFacade;
 public class GameActivityViewModel {
 
     private GameData gameData;
-    private GameDataFacade gameDataFacade;
+    private final GameDataFacade gameDataFacade;
 
     /**
      * Constructor for the class, gets the singleton gameData object

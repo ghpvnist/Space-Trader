@@ -1,13 +1,12 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Enumerates possible resource levels
  */
-public enum Resource implements Serializable {
+public enum Resource {
     NO_SPECIAL_RESOURCES("No Special Resources", 0),
     MINERAL_RICH("Mineral Rich", 1),
     MINERAL_POOR("Mineral Poor", 2),
@@ -22,15 +21,15 @@ public enum Resource implements Serializable {
     ARTISTIC("Artistic", 11),
     WAR_LIKE("War-Like", 12);
 
-    private String resourceName;
-    private int resourceLevel;
+    private final String resourceName;
+    private final int resourceLevel;
 
     Resource(String resourceName, int resourceLevel) {
         this.resourceName = resourceName;
         this.resourceLevel = resourceLevel;
     }
 
-    private static final Map<Integer, Resource> lookup = new HashMap<Integer, Resource>();
+    private static final Map<Integer, Resource> lookup = new HashMap<>();
 
     static {
         for (Resource d : Resource.values()) {
@@ -50,7 +49,7 @@ public enum Resource implements Serializable {
      * Getter for the value of the level
      * @return the value corresponding to the level
      */
-    public int getResourceLevel() {
+    private int getResourceLevel() {
         return resourceLevel;
     }
 

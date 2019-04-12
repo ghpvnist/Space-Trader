@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.spacetrader.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  */
 public class ItemType {
 
-    private String itemId;
+    private final String itemId;
     private String name;
     private double basePrice;
     private Map<Resource, Double> resourceValueModifiers;
@@ -22,7 +23,7 @@ public class ItemType {
      * @param resourceValueModifiers the modifier value to calculate what Resource level the item can appear at
      * @param techLevelValueModifiers the modifier value to calculate what TechLevel level the item can appear at
      */
-    public ItemType(String name, String itemId, double basePrice, Map<Resource, Double> resourceValueModifiers, Map<TechLevel, Double> techLevelValueModifiers) {
+    private ItemType(String name, String itemId, double basePrice, Map<Resource, Double> resourceValueModifiers, Map<TechLevel, Double> techLevelValueModifiers) {
         this.name = name;
         this.itemId = itemId;
         this.basePrice = basePrice;
@@ -83,7 +84,7 @@ public class ItemType {
      * @return the resourceValueModifiers field
      */
     public Map<Resource, Double> getResourceValueModifiers() {
-        return resourceValueModifiers;
+        return Collections.unmodifiableMap(resourceValueModifiers);
     }
 
     /**
@@ -99,7 +100,7 @@ public class ItemType {
      * @return the techLevelValueModifiers field
      */
     public Map<TechLevel, Double> getTechLevelValueModifiers() {
-        return techLevelValueModifiers;
+        return Collections.unmodifiableMap(techLevelValueModifiers);
     }
 
     /**
@@ -119,7 +120,7 @@ public class ItemType {
         double techLevelModifier = this.getTechLevelValueModifier(planet.getPlanetTechLevel());
         double resourceModifier = this.getResourceValueModifier(planet.getPlanetResource());
 
-        if (techLevelModifier == 0 || resourceModifier == 0) {
+        if ((techLevelModifier == 0) || (resourceModifier == 0)) {
             return 0;
         }
 

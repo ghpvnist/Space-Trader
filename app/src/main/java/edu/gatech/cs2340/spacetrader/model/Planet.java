@@ -1,9 +1,6 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import android.content.ClipData;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -22,13 +19,6 @@ public class Planet implements Serializable {
     //private Shipyard shipyard;
 
     private static final int MAX_STORE_ITEM_QUANTITY = 14;
-
-    /**
-     * Constructor for the class
-     */
-    public Planet() {
-        this.name = "";
-    }
 
     /**
      * Constructor for the class
@@ -53,7 +43,7 @@ public class Planet implements Serializable {
         for (int i = 0; i < tradeOffers.length; i++) {
             tradeOffers[i] = new TradeOffer(validItems.get(i).getName(), validItems.get(i).getItemId(),
                     (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice(this)),
-                    (int)(getRandomAdjust() * getRandomAdjust() * MAX_STORE_ITEM_QUANTITY - 2));
+                    (int) ((getRandomAdjust() * getRandomAdjust() * MAX_STORE_ITEM_QUANTITY) - 2));
         }
 
         this.store = new Store(generateRandomStoreName(), tradeOffers);

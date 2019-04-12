@@ -8,13 +8,13 @@ import android.text.style.ForegroundColorSpan;
 /**
  * Class that helps to format the banners on views in the application
  */
-public final class ViewFormatUtil {
+class ViewFormatUtil {
 
-    public static final double URGENT_LOW_CARGO_THRESH = 0.1;
-    public static final int URGENT_LOW_CARGO_COLOR = Color.rgb(224, 15, 24);
+    private static final double URGENT_LOW_CARGO_THRESH = 0.1;
+    private static final int URGENT_LOW_CARGO_COLOR = Color.rgb(224, 15, 24);
 
-    public static final double LOW_CARGO_THRESH = 0.33;
-    public static final int LOW_CARGO_COLOR = Color.rgb(250, 100, 0);
+    private static final double LOW_CARGO_THRESH = 0.33;
+    private static final int LOW_CARGO_COLOR = Color.rgb(250, 100, 0);
 
     /**
      * Creates the string representation of the player's cargo capacity
@@ -27,17 +27,17 @@ public final class ViewFormatUtil {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
         SpannableString availSpace = new SpannableString(String.valueOf(available));
-        if (((double) available) / max < URGENT_LOW_CARGO_THRESH) {
+        if ((((double) available) / max) < URGENT_LOW_CARGO_THRESH) {
             availSpace.setSpan(new ForegroundColorSpan(URGENT_LOW_CARGO_COLOR), 0, availSpace.length(), 0);
-        } else if (((double) available) / max < LOW_CARGO_THRESH) {
+        } else if ((((double) available) / max) < LOW_CARGO_THRESH) {
             availSpace.setSpan(new ForegroundColorSpan(LOW_CARGO_COLOR), 0, availSpace.length(), 0);
         }
         builder.append(availSpace);
 
-        SpannableString sep = new SpannableString(addSpace ? " / " : "/");
+        CharSequence sep = new SpannableString(addSpace ? " / " : "/");
         builder.append(sep);
 
-        SpannableString maxSpace = new SpannableString(String.valueOf(max));
+        CharSequence maxSpace = new SpannableString(String.valueOf(max));
         builder.append(maxSpace);
 
         return builder;

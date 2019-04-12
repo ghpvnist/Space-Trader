@@ -1,11 +1,9 @@
 package edu.gatech.cs2340.spacetrader.model;
 
-import java.io.Serializable;
-
 /**
  * Enumerates possible types of ship
  */
-public enum ShipType implements Serializable {
+public enum ShipType {
     FLEA(100, 100, 100, 100, 100, 100),
     GNAT(100, 100, 100, 100, 100, 100),
     FIREFLY(100, 100, 100, 100, 100, 100),
@@ -24,7 +22,7 @@ public enum ShipType implements Serializable {
     private final int maxFuel;
     private final int cost;
 
-    private ShipType(int attackPower, int cargoSize, int speed, int maxHealth, int maxFuel, int cost) {
+    ShipType(int attackPower, int cargoSize, int speed, int maxHealth, int maxFuel, int cost) {
         this.attackPower = attackPower;
         this.cargoSize = cargoSize;
         this.speed = speed;
