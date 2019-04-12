@@ -10,6 +10,9 @@ public class RandomEvent {
     private String message;
     private int creditsGained;
 
+    private static final double RANDOM_CREDITS_LOWER = 0.05;
+    private static final double RANDOM_CREDITS_UPPER = 0.30;
+
     /**
      * Constructor for the class
      * @param eventNumber the id for the randomly generated event
@@ -25,7 +28,8 @@ public class RandomEvent {
             GameData gameData = GameData.getInstance();
             StringBuilder sb = new StringBuilder(possibleEvents[eventNumber]);
             Random rand = new Random();
-            this.creditsGained = rand.nextInt(gameData.getPlayer().getCredits()/3) + gameData.getPlayer().getCredits()/15;
+            this.creditsGained = (int)((RANDOM_CREDITS_LOWER + (RANDOM_CREDITS_UPPER - RANDOM_CREDITS_LOWER) * rand.nextFloat())
+                    * gameData.getPlayer().getCredits());
 
             if(eventNumber % 2 == 0){
                 sb.append(" You lost ").append(this.creditsGained).append(" Credits");

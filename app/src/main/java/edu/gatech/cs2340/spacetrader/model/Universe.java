@@ -9,6 +9,8 @@ import java.util.Random;
  */
 public class Universe implements Serializable {
 
+    public static final int COORDINATE_MAX_BOUND = 2001;
+    public static final int RESOURCE_MAX_NUM = 13;
     private SolarSystem[] solarSystems;
 
     /**
@@ -154,13 +156,13 @@ public class Universe implements Serializable {
         int[] x = new int[10];
 
         for (int i = 0; i < 10; i++) {
-            x[i] = randomGenerator.nextInt(2001) - 1000;
+            x[i] = randomGenerator.nextInt(COORDINATE_MAX_BOUND) - 1000;
         }
 
         int[] y = new int[10];
 
         for (int i = 0; i < 10; i++) {
-            y[i] = randomGenerator.nextInt(2001) - 1000;
+            y[i] = randomGenerator.nextInt(COORDINATE_MAX_BOUND) - 1000;
         }
 
         //Todo: deal with the case where planets overlap
@@ -174,7 +176,7 @@ public class Universe implements Serializable {
         int[] resource = new int[10];
 
         for (int i = 0; i < 10; i++) {
-            resource[i] = randomGenerator.nextInt(13);
+            resource[i] = randomGenerator.nextInt(RESOURCE_MAX_NUM);
         }
 
         for (int i = 0; i < 10; i++) {

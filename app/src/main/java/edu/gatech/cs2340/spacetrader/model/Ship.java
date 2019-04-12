@@ -16,6 +16,7 @@ public class Ship implements Serializable {
     private int currentHealth;
     private int currentCargo;
 
+
     /**
      * Contructor for the ship
      */
@@ -26,10 +27,9 @@ public class Ship implements Serializable {
         this.cargo = new HashMap<String, Integer>();
         this.currentCargo = 0;
 
-        this.addCargo("Wood Log", 15);
-        this.addCargo("Patrick", 1);
-        this.addCargo("Apple", 8);
-        this.addCargo("Machine Parts", 3);
+        this.addCargo("Wood Log", 10);
+        this.addCargo("Apple", 10);
+        this.addCargo("Machine Parts", 10);
         Log.d("SHIP", "Ship constructor called!");
         Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
     }

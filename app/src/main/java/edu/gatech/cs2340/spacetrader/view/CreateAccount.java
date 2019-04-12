@@ -31,6 +31,7 @@ public class CreateAccount extends AppCompatActivity {
     private TextView pilotSkillPointsTextView;
     private EditText usernameEditText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,7 +197,7 @@ public class CreateAccount extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (usernameEditText.getText().toString().length() > 0 || viewModel.getRemainingSkillPoints() < 16) {
+        if (usernameEditText.getText().toString().length() > 0 || viewModel.getRemainingSkillPoints() < viewModel.INITIAL_SKILL_POINTS) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirm Exit?");
             builder.setMessage("Your progress will not be saved.");

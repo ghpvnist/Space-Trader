@@ -23,6 +23,7 @@ import edu.gatech.cs2340.spacetrader.model.Universe;
  */
 public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.UniverseViewHolder> {
 
+    public static final int ICON_OFFSET = 10000;
     private GameData gameData;
 
     /**
@@ -87,7 +88,7 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
     }
 
     private int getPlanetIcon(SolarSystem system) {
-        int idx = (10000 + system.getX() + system.getY()) % 6;
+        int idx = (ICON_OFFSET + system.getX() + system.getY()) % 6;
         switch (idx) {
             case 0:
                 return R.drawable.planet1;

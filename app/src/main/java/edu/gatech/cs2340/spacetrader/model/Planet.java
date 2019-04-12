@@ -21,6 +21,8 @@ public class Planet implements Serializable {
     private int y;
     //private Shipyard shipyard;
 
+    private static final int MAX_STORE_ITEM_QUANTITY = 14;
+
     /**
      * Constructor for the class
      */
@@ -43,27 +45,6 @@ public class Planet implements Serializable {
         this.planetResource = resource;
         this.planetTechLevel = techLevel;
 
-
-        /*ItemType[] items = ItemManager.getItemManager().getItemList();
-        ArrayList<TradeOffer> offers = new ArrayList<TradeOffer>();
-        Random rand = new Random();
-
-        for(ItemType item: items){
-            if(item.getAdjustedQuantity(this) > 0){
-                double priceMultiplier = .4 * rand.nextDouble() + .8;
-                double quantityMultiplier = .4 * rand.nextDouble() + .8;
-
-                //Tune quantities as necessary
-                offers.add(new TradeOffer(item.getName(),
-                        (int)(priceMultiplier * item.getAdjustedPrice(this)),
-                        (int)(quantityMultiplier * item.getAdjustedQuantity(this))));
-            }
-        }
-
-        TradeOffer[] tradeOffers = (TradeOffer[]) offers.toArray();
-
-        this.store = new Store(name + " Store", tradeOffers);*/
-
         ItemManager im = ItemManager.getItemManager();
         List<ItemType> validItems = Arrays.asList(im.getItemList());
         Collections.shuffle(validItems);
@@ -71,8 +52,8 @@ public class Planet implements Serializable {
         TradeOffer[] tradeOffers = new TradeOffer[3 + ItemManager.getRNG().nextInt(3)];
         for (int i = 0; i < tradeOffers.length; i++) {
             tradeOffers[i] = new TradeOffer(validItems.get(i).getName(), validItems.get(i).getItemId(),
-                    (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice(this) + 0.5),
-                    (int)(getRandomAdjust() * getRandomAdjust() * 12 - 2));
+                    (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice(this)),
+                    (int)(getRandomAdjust() * getRandomAdjust() * MAX_STORE_ITEM_QUANTITY - 2));
         }
 
         this.store = new Store(generateRandomStoreName(), tradeOffers);
@@ -87,8 +68,11 @@ public class Planet implements Serializable {
                 + thirdPart[ItemManager.getRNG().nextInt(thirdPart.length)];
     }
 
+    private static final double RANDOM_ADJUST_LOWER = 0.8;
+    private static final double RANDOM_ADJUST_RANGE = 0.4;
+
     private double getRandomAdjust() {
-        return 0.8 + (0.4 * ItemManager.getRNG().nextDouble());
+        return RANDOM_ADJUST_LOWER + (RANDOM_ADJUST_RANGE * ItemManager.getRNG().nextDouble());
     }
 
     /**

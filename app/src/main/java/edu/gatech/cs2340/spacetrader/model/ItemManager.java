@@ -15,16 +15,20 @@ public class ItemManager {
     private Map<String, ItemType> items;
     private ItemType[] itemList;
 
+    private static int MAX_BASE_PRICE = 100;
+
     private ItemManager() {
+        Random rng = new Random();
+
         itemList = new ItemType[8];
-        itemList[0] = new ItemType("Apple", "apple", 10);
-        itemList[1] = new ItemType("Food Rations", "food_rations", 21);
-        itemList[2] = new ItemType("Wood Log", "log", 28);
-        itemList[3] = new ItemType("Iron Bar", "iron_bar", 35);
-        itemList[4] = new ItemType("Gold Bar", "gold_bar", 58);
-        itemList[5] = new ItemType("Sakuradite Bar", "sakuradite_bar", 183);
-        itemList[6] = new ItemType("Weapons", "weapons", 88);
-        itemList[7] = new ItemType("Machine Parts", "machine_parts", 39);
+        itemList[0] = new ItemType("Apple", "apple", rng.nextInt(MAX_BASE_PRICE));
+        itemList[1] = new ItemType("Food Rations", "food_rations", rng.nextInt(MAX_BASE_PRICE));
+        itemList[2] = new ItemType("Wood Log", "log", rng.nextInt(MAX_BASE_PRICE));
+        itemList[3] = new ItemType("Iron Bar", "iron_bar", rng.nextInt(MAX_BASE_PRICE));
+        itemList[4] = new ItemType("Gold Bar", "gold_bar", rng.nextInt(MAX_BASE_PRICE));
+        itemList[5] = new ItemType("Sakuradite Bar", "sakuradite_bar", rng.nextInt(MAX_BASE_PRICE));
+        itemList[6] = new ItemType("Weapons", "weapons", rng.nextInt(MAX_BASE_PRICE));
+        itemList[7] = new ItemType("Machine Parts", "machine_parts", rng.nextInt(MAX_BASE_PRICE));
 
         items = new HashMap<>();
         for (ItemType it : itemList) {

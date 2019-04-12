@@ -18,12 +18,14 @@ public class CreateAccountViewModel {
     private int pilotSkillPoints;
     private int traderSkillPoints;
 
+    private static final int INITIAL_SKILL_POINTS = 16;
+
     /**
      * Default constructor
      */
     public CreateAccountViewModel() {
         this.difficulty = DifficultyLevel.NORMAL;
-        this.remainingSkillPoints = 16;
+        this.remainingSkillPoints = INITIAL_SKILL_POINTS;
         this.engineerSkillPoints = 0;
         this.fighterSkillPoints = 0;
         this.pilotSkillPoints = 0;

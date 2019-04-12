@@ -70,6 +70,8 @@ public class Store implements Serializable {
         return 10 * quantity;
     }
 
+    public final static double STORE_UPDATE_MULTIPLIER = 2.27;
+
     /**
      * Restocks the store after the player has left
      */
@@ -80,7 +82,7 @@ public class Store implements Serializable {
 
             //expected value of about 1
             double x = 4 * rand.nextDouble() - 2;
-            double multiplier = 2.27 * Math.pow(Math.E, -1 * Math.pow(x, 2));
+            double multiplier = STORE_UPDATE_MULTIPLIER * Math.pow(Math.E, -1 * Math.pow(x, 2));
 
             if (tradeOffer.getItemQuantity() > tradeOffer.getDefaultQuantity()) {
                 tradeOffer.setItemQuantity((int) (tradeOffer.getItemQuantity() * multiplier));
