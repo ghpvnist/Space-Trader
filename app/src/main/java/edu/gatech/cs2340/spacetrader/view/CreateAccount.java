@@ -197,7 +197,7 @@ public class CreateAccount extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (usernameEditText.getText().toString().length() > 0 || viewModel.getRemainingSkillPoints() < viewModel.INITIAL_SKILL_POINTS) {
+        if (usernameEditText.getText().toString().length() > 0 || viewModel.getRemainingSkillPoints() < 15) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirm Exit?");
             builder.setMessage("Your progress will not be saved.");

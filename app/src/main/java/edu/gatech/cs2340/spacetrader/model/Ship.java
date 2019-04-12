@@ -30,8 +30,8 @@ public class Ship implements Serializable {
         this.addCargo("Wood Log", 10);
         this.addCargo("Apple", 10);
         this.addCargo("Machine Parts", 10);
-        Log.d("SHIP", "Ship constructor called!");
-        Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
+//        Log.d("SHIP", "Ship constructor called!");
+//        Log.d("SHIP", "Current cargo amount is " + this.getCurrentCargo());
     }
 
     /**
