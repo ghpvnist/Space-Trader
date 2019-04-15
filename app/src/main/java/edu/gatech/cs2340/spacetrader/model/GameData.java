@@ -16,6 +16,10 @@ public class GameData {
         this.universe = universe;
     }
 
+    public static void TEST_setInstance(Player player, Universe universe) {
+        INSTANCE = new GameData(player, universe);
+    }
+
     /**
      * Returns the singleton object for the class
      * @return INSTANCE the instance of the singleton class

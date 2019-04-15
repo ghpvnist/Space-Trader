@@ -52,7 +52,7 @@ public class Planet implements Serializable {
         TradeOffer[] tradeOffers = new TradeOffer[3 + ItemManager.getRNG().nextInt(3)];
         for (int i = 0; i < tradeOffers.length; i++) {
             tradeOffers[i] = new TradeOffer(validItems.get(i).getName(), validItems.get(i).getItemId(),
-                    (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice(this)),
+                    (int)(getRandomAdjust() * validItems.get(i).getAdjustedPrice( this)),
                     (int)(getRandomAdjust() * getRandomAdjust() * MAX_STORE_ITEM_QUANTITY - 2));
         }
 
