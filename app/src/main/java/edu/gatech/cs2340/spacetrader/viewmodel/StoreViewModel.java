@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.spacetrader.viewmodel;
 
+import android.util.Log;
+
 import edu.gatech.cs2340.spacetrader.model.GameData;
 import edu.gatech.cs2340.spacetrader.model.Player;
 import edu.gatech.cs2340.spacetrader.model.Store;
@@ -97,7 +99,7 @@ public class StoreViewModel {
     public void buyItem(TradeOffer offer, int quantity) {
         if (offer.getItemQuantity() >= quantity &&
                 this.gameData.getPlayer().getShip().getAvailableCargoSpace() >= quantity &&
-                this.gameData.getPlayer().getCredits() > (quantity * offer.getItemPrice())) {
+                this.gameData.getPlayer().getCredits() >= (quantity * offer.getItemPrice())) {
             this.gameData.getPlayer().getShip().addCargo(offer.getItemName(), quantity);
             offer.setItemQuantity(offer.getItemQuantity() - quantity);
             this.gameData.getPlayer().addCredits(-quantity * offer.getItemPrice());

@@ -22,8 +22,8 @@ public class Ship implements Serializable {
      */
     public Ship() {
         this.shipType = shipType.GNAT;
-        this.currentFuel = shipType.GNAT.getMaxFuel();
-        this.currentHealth = shipType.GNAT.getMaxHealth();
+        this.currentFuel = shipType.getMaxFuel();
+        this.currentHealth = shipType.getMaxHealth();
         this.cargo = new HashMap<String, Integer>();
         this.currentCargo = 0;
 
@@ -95,6 +95,11 @@ public class Ship implements Serializable {
                 this.cargo.put(itemName, curQuantity - quantity);
             }
         }
+    }
+
+    public void clearCargo() {
+        this.setCargo(new HashMap<String, Integer>());
+        this.currentCargo = 0;
     }
 
     /**
