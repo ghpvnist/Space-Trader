@@ -23,6 +23,7 @@ import edu.gatech.cs2340.spacetrader.viewmodel.MainActivityViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel viewModel;
+    private int invokedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.viewModel = new MainActivityViewModel();
+        this.invokedId = 0;
 
         Player player = new Player();
 
@@ -44,17 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        MediaPlayer shutdownPlayer = MediaPlayer.create(MainActivity.this, R.raw.shutdown);
-        shutdownPlayer.setLooping(false);
-        shutdownPlayer.setVolume(1.f, 1.f);
-        shutdownPlayer.start();
+        if (invokedId == 0) {
+            MediaPlayer shutdownPlayer = MediaPlayer.create(MainActivity.this, R.raw.shutdown);
+            shutdownPlayer.setLooping(false);
+            shutdownPlayer.setVolume(1.f, 1.f);
+            shutdownPlayer.start();
 
-        shutdownPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
+            shutdownPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
+        }
         super.onDestroy();
     }
 
@@ -63,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view the user clicks on
      */
     public void onClick(View v) {
-        if (v.getId() == R.id.newAccount) {
+        invokedId = v.getId();
+        if (invokedId == R.id.newAccount) {
             createAccount();
-        } else if (v.getId() == R.id.loadAccount) {
+        } else if (invokedId == R.id.loadAccount) {
             loadAccount();
         }
-
     }
 
     /**
