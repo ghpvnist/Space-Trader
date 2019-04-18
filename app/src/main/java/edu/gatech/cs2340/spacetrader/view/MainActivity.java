@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.spacetrader.view;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        MediaPlayer shutdownPlayer = MediaPlayer.create(MainActivity.this, R.raw.shutdown);
+        shutdownPlayer.setLooping(false);
+        shutdownPlayer.setVolume(1.f, 1.f);
+        shutdownPlayer.start();
+
+        shutdownPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
+        super.onDestroy();
     }
 
     /**
