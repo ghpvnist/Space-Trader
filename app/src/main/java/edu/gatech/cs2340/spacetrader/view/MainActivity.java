@@ -23,6 +23,8 @@ import edu.gatech.cs2340.spacetrader.viewmodel.MainActivityViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel viewModel;
+    private MediaPlayer mainTheme;
+    private int mainThemePos;
     private boolean isBackPressed;
 
     @Override
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.viewModel = new MainActivityViewModel();
+        this.mainTheme = MediaPlayer.create(MainActivity.this, R.raw.main);
         this.isBackPressed = false;
 
         Player player = new Player();
@@ -42,6 +45,22 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        this.mainTheme.setLooping(true);
+        this.mainTheme.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mainTheme.pause();
+        mainThemePos = mainTheme.getCurrentPosition();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainTheme.seekTo(mainThemePos);
+        mainTheme.start();
     }
 
     @Override
@@ -53,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mainTheme.release();
+
         if (this.isBackPressed) {
             MediaPlayer shutdownPlayer = MediaPlayer.create(MainActivity.this, R.raw.shutdown);
             shutdownPlayer.setLooping(false);
