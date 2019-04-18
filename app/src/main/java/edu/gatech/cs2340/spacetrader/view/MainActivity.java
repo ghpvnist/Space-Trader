@@ -23,7 +23,7 @@ import edu.gatech.cs2340.spacetrader.viewmodel.MainActivityViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel viewModel;
-    private int invokedId;
+    private boolean isBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.viewModel = new MainActivityViewModel();
-        this.invokedId = 0;
+        this.isBackPressed = false;
 
         Player player = new Player();
 
@@ -45,8 +45,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        this.isBackPressed = true;
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onDestroy() {
-        if (invokedId == 0) {
+        super.onDestroy();
+        if (this.isBackPressed) {
             MediaPlayer shutdownPlayer = MediaPlayer.create(MainActivity.this, R.raw.shutdown);
             shutdownPlayer.setLooping(false);
             shutdownPlayer.setVolume(1.f, 1.f);
@@ -59,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        super.onDestroy();
     }
 
     /**
@@ -67,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view the user clicks on
      */
     public void onClick(View v) {
-        invokedId = v.getId();
+        int invokedId = v.getId();
         if (invokedId == R.id.newAccount) {
             createAccount();
         } else if (invokedId == R.id.loadAccount) {
@@ -81,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public void createAccount() {
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
-        finish();
+        // finish();
     }
 
     /**
@@ -92,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             this.viewModel.loadGameData(this);
             Intent intent = new Intent(this, GameActivity.class);
             startActivity(intent);
-            finish();
+            // finish();
         } catch(IOException e) {
             Toast.makeText(getApplicationContext(),"No Data To Load",Toast.LENGTH_SHORT).show();
             Log.i("Data", e.toString());

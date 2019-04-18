@@ -115,10 +115,10 @@ public class TravelViewActivity extends AppCompatActivity {
             this.gameData.getPlayer().getShip().setCurrentFuel(currentFuel - (cost));
             this.gameData.getPlayer().setCurrentPlanet(system.getPlanets()[0]);
             Toast.makeText(getApplicationContext(),"Traveled to the " + system.getName(),Toast.LENGTH_SHORT).show();
-            finish();
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("eventNumber", this.generateRandomEvent());
-            startActivity(intent);
+            setResult(RESULT_OK, intent);
+            finish();
         } else {
             Toast.makeText(getApplicationContext(),"Not enough fuel",Toast.LENGTH_SHORT).show();
         }

@@ -78,10 +78,6 @@ public class GameActivity extends AppCompatActivity {
 
         currentPlanetText = findViewById(R.id.currentPlanetText);
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
-
-        Intent intent = getIntent();
-        int eventNumber = intent.getIntExtra("eventNumber", Integer.MAX_VALUE);
-        this.executeRandomEvent(eventNumber);
     }
 
     /**
@@ -109,6 +105,17 @@ public class GameActivity extends AppCompatActivity {
         super.onResume();
         Log.i("Here", "Resume " + this.gameData.getPlayer().getCurrentPlanet().getName());
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                int eventNumber = intent.getIntExtra("eventNumber", Integer.MAX_VALUE);
+                this.executeRandomEvent(eventNumber);
+            }
+        }
     }
 
     /**
@@ -146,8 +153,6 @@ public class GameActivity extends AppCompatActivity {
         builder.setPositiveButton("QUIT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(GameActivity.this, MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

@@ -59,4 +59,14 @@ public class UniverseViewActivity extends AppCompatActivity {
         adapter.setPlayer(gameData.getPlayer());
         fuelText.setText("Available Fuel: " + gameData.getPlayer().getShip().getCurrentFuel());
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setResult(resultCode, intent);
+                finish();
+            }
+        }
+    }
 }

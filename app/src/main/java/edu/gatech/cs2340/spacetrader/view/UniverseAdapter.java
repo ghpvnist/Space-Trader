@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.spacetrader.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -117,7 +118,8 @@ public class UniverseAdapter extends RecyclerView.Adapter<UniverseAdapter.Univer
         extras.putSerializable("system", (SolarSystem) v.findViewById(R.id.systemName).getTag());
         extras.putInt("planetImage", (int) v.findViewById(R.id.planetImage).getTag());
         intent.putExtras(extras);
-        v.getContext().startActivity(intent);
+        // v.getContext().startActivity(intent);
+        ((Activity)v.getContext()).startActivityForResult(intent, 1);
     }
 
     class UniverseViewHolder extends RecyclerView.ViewHolder {
