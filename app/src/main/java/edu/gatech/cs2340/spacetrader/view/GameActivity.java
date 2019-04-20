@@ -2,6 +2,7 @@ package edu.gatech.cs2340.spacetrader.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ public class GameActivity extends AppCompatActivity {
     private Button shipButton;
     private TextView currentPlanetText;
     private GameData gameData;
+    private MediaPlayer gameTheme;
+    private int gameThemePos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class GameActivity extends AppCompatActivity {
 
         this.viewModel = new GameActivityViewModel();
         this.gameData = GameData.getInstance();
+
+        this.gameTheme = MediaPlayer.create(GameActivity.this, R.raw.game);
+        this.gameThemePos = 0;
 
         if (this.gameData.getPlayer().getCurrentPlanet() == null) {
             this.gameData.getPlayer().setCurrentPlanet(this.gameData.getUniverse().getSolarSystem(0).getPlanets()[0]);
@@ -78,6 +84,9 @@ public class GameActivity extends AppCompatActivity {
 
         currentPlanetText = findViewById(R.id.currentPlanetText);
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
+
+        this.gameTheme.setLooping(true);
+        this.gameTheme.start();
     }
 
     /**
@@ -103,6 +112,10 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        gameTheme.seekTo(gameThemePos);
+        gameTheme.start();
+
         Log.i("Here", "Resume " + this.gameData.getPlayer().getCurrentPlanet().getName());
         currentPlanetText.setText("You are at the " + this.gameData.getPlayer().getCurrentPlanet().getName() + " System");
     }
@@ -169,5 +182,18 @@ public class GameActivity extends AppCompatActivity {
             throw new RuntimeException("Game Data not saved");
         }
         super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        gameTheme.pause();
+        gameThemePos = gameTheme.getCurrentPosition();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameTheme.release();
     }
 }

@@ -2,6 +2,7 @@ package edu.gatech.cs2340.spacetrader.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ public class CreateAccount extends AppCompatActivity {
     private TextView fighterSkillPointsTextView;
     private TextView pilotSkillPointsTextView;
     private EditText usernameEditText;
+    private MediaPlayer accountTheme;
+    private int accountThemePos;
 
 
     @Override
@@ -37,6 +40,9 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_create_account);
+
+        this.accountTheme = MediaPlayer.create(CreateAccount.this, R.raw.account);
+        this.accountThemePos = 0;
 
         viewModel = new CreateAccountViewModel();
 
@@ -128,6 +134,9 @@ public class CreateAccount extends AppCompatActivity {
         updateFighterSkillPointsView();
         updatePilotSkillPointsView();
         updateTraderSkillPointsView();
+
+        this.accountTheme.setLooping(true);
+        this.accountTheme.start();
     }
 
     /**
@@ -220,4 +229,25 @@ public class CreateAccount extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        accountTheme.pause();
+        accountThemePos = accountTheme.getCurrentPosition();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        accountTheme.seekTo(accountThemePos);
+        accountTheme.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        accountTheme.release();
+    }
+
 }
